@@ -1,0 +1,131 @@
+{
+  "generated_from": "e:/hotelplus/resources/A1_booking_history/normalized_stays.csv",
+  "records_analyzed": 16372,
+  "p3_baselines": {
+    "High": {
+      "median_2025": 940.0,
+      "median_2026": 978.6,
+      "weighted_baseline": 963,
+      "sample_size": 926
+    },
+    "Shoulder": {
+      "median_2025": 900.0,
+      "median_2026": 950.0,
+      "weighted_baseline": 930,
+      "sample_size": 1883
+    },
+    "Low": {
+      "median_2025": 1030.6,
+      "median_2026": 935.9,
+      "weighted_baseline": 974,
+      "sample_size": 719
+    }
+  },
+  "p4_weekend_rules": {
+    "High": {
+      "occ_weekday": 19.7,
+      "occ_weekend": 23.7,
+      "occ_delta_pts": 4.0,
+      "adr_weekday": 1516.6,
+      "adr_weekend": 1769.4,
+      "adr_delta_pct": 16.7,
+      "qualifies": true,
+      "cap": 0.15,
+      "applied_uplift": 0.15
+    },
+    "Shoulder": {
+      "occ_weekday": 15.8,
+      "occ_weekend": 20.6,
+      "occ_delta_pts": 4.8,
+      "adr_weekday": 1406.4,
+      "adr_weekend": 1672.5,
+      "adr_delta_pct": 18.9,
+      "qualifies": true,
+      "cap": 0.1,
+      "applied_uplift": 0.1
+    },
+    "Low": {
+      "occ_weekday": 9.6,
+      "occ_weekend": 21.0,
+      "occ_delta_pts": 11.4,
+      "adr_weekday": 1371.7,
+      "adr_weekend": 1623.2,
+      "adr_delta_pct": 18.3,
+      "qualifies": true,
+      "cap": 0.05,
+      "applied_uplift": 0.05
+    }
+  },
+  "p6_room_tiers": [
+    {
+      "tier": 1,
+      "name": "Deluxe Room Twin Bed",
+      "historical_median": 1020.0,
+      "step_percentage": 0.0,
+      "cumulative_multiplier": 1.0
+    },
+    {
+      "tier": 2,
+      "name": "Deluxe Room Double",
+      "historical_median": 1080.0,
+      "step_percentage": 0.15,
+      "cumulative_multiplier": 1.15
+    },
+    {
+      "tier": 3,
+      "name": "Deluxe Double or Twin with Balcony",
+      "historical_median": 1250.0,
+      "step_percentage": 0.1574,
+      "cumulative_multiplier": 1.331
+    },
+    {
+      "tier": 4,
+      "name": "Deluxe Sea Breeze Room",
+      "historical_median": 1450.0,
+      "step_percentage": 0.16,
+      "cumulative_multiplier": 1.544
+    },
+    {
+      "tier": 5,
+      "name": "Double Room with Partial Sea View",
+      "historical_median": 1475.0,
+      "step_percentage": 0.15,
+      "cumulative_multiplier": 1.7756
+    },
+    {
+      "tier": 6,
+      "name": "Ocean Queen Room",
+      "historical_median": 1895.4,
+      "step_percentage": 0.285,
+      "cumulative_multiplier": 2.2817
+    },
+    {
+      "tier": 7,
+      "name": "One Bed room Suite",
+      "historical_median": 3805.9,
+      "step_percentage": 0.3,
+      "cumulative_multiplier": 2.9662
+    },
+    {
+      "tier": 8,
+      "name": "Honeymoon Suite - King",
+      "historical_median": 3486.1,
+      "step_percentage": 0.15,
+      "cumulative_multiplier": 3.4111
+    }
+  ],
+  "p7_floors": {
+    "High": {
+      "p20_historical": 930.0,
+      "hard_block_85": 790.5
+    },
+    "Shoulder": {
+      "p20_historical": 900.0,
+      "hard_block_85": 765.0
+    },
+    "Low": {
+      "p20_historical": 900.0,
+      "hard_block_85": 765.0
+    }
+  }
+}

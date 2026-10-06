@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-surface-elevated: #F1F5F9;
+  --border-subtle: #E2E8F0;
+  --border-active: #CBD5E1;
+  --text-main: #0F172A;
+  --text-muted: #475569;
+  --accent-blue: #0284C7;
+  --accent-emerald: #059669;
+  --accent-amber: #D97706;
+  --accent-crimson: #E11D48;
+  --accent-violet: #7C3AED;
+}
+
+.theme-dark {
+  --bg-primary: #090D16;
+  --bg-surface: #0F172A;
+  --bg-surface-elevated: #1E293B;
+  --border-subtle: #334155;
+  --border-active: #475569;
+  --text-main: #F8FAFC;
+  --text-muted: #94A3B8;
+  --accent-blue: #38BDF8;
+  --accent-emerald: #10B981;
+  --accent-amber: #F59E0B;
+  --accent-crimson: #EF4444;
+  --accent-violet: #8B5CF6;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Tabular numbers for financial and pricing tables */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Minimalist scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-active);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}

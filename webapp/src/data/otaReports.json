@@ -1,0 +1,215 @@
+[
+  {
+    "channel": "Booking.com",
+    "portal_name": "Booking Partner Central - Ranking Dashboard",
+    "file_source": "Booking.pdf",
+    "date_range": "Last 30 days (as of 21 Sept 2026)",
+    "comparison_benchmark": "Competitive Set (Jomtien Beach)",
+    "metrics": {
+      "average_daily_rate": {
+        "value": 1868.56,
+        "currency": "THB",
+        "confidence": 0.98,
+        "validation": "PASS",
+        "notes": "Matches historical high season range"
+      },
+      "property_page_score": {
+        "value": 100.0,
+        "unit": "%",
+        "confidence": 0.99,
+        "validation": "PASS",
+        "notes": "Optimal property content listing"
+      },
+      "guest_review_score": {
+        "value": 5.5,
+        "scale": "10.0",
+        "confidence": 0.95,
+        "validation": "WARN",
+        "notes": "Low score flag (< 7.0). Requires RM attention on service complaints."
+      },
+      "conversion_rate": {
+        "value": 1.22,
+        "unit": "%",
+        "confidence": 0.98,
+        "validation": "PASS",
+        "notes": "Standard OTA benchmark (typically 1.0 - 2.5%)"
+      },
+      "search_result_views": {
+        "value": 31494,
+        "benchmark_diff_pct": -62.94,
+        "confidence": 0.97,
+        "validation": "PASS",
+        "notes": "62.9% below competitive set views"
+      },
+      "property_page_visits": {
+        "value": 530,
+        "benchmark_diff_pct": -92.7,
+        "confidence": 0.97,
+        "validation": "PASS",
+        "notes": "Click-through rate from search: 1.68% (vs comp 8.55%)"
+      },
+      "bookings_made": {
+        "value": 7,
+        "benchmark_diff_pct": -94.47,
+        "confidence": 0.98,
+        "validation": "PASS",
+        "notes": "Severe underperformance vs competitive set"
+      },
+      "availability_for_search": {
+        "value": 99.09,
+        "unit": "%",
+        "confidence": 0.99,
+        "validation": "PASS",
+        "notes": "Good availability; issue is conversion & review score"
+      },
+      "ranking_position": {
+        "within_comp_set": "10/11",
+        "within_destination": "177/1839 (Jomtien Beach)",
+        "confidence": 0.96,
+        "validation": "PASS",
+        "notes": "Bottom tier of local comp set"
+      }
+    },
+    "layout_drift_detection": {
+      "status": "NORMAL",
+      "anchor_checks": {
+        "header_ranking_dashboard": true,
+        "funnel_views_visits_bookings": true,
+        "comp_overview_table": true
+      },
+      "drift_score": 0.02
+    },
+    "human_review_required": true,
+    "review_reason": "Low review score (5.5) and bottom comp rank (10/11) flagged for RM verification."
+  },
+  {
+    "channel": "Agoda",
+    "portal_name": "Agoda Partner Portal - Analytics",
+    "file_source": "Agoda.pdf",
+    "date_range": "Booked in last 30 days (vs Competitor set)",
+    "comparison_benchmark": "Competitor Set",
+    "metrics": {
+      "content_score": {
+        "value": 87,
+        "grade": "Good",
+        "confidence": 0.98,
+        "validation": "PASS",
+        "notes": "Properties with 100 receive 150% more bookings on average"
+      },
+      "primary_lead_time": {
+        "segment": "0-1 day (Last minute)",
+        "share_pct": 47.0,
+        "comp_share_pct": 32.0,
+        "difference_pts": 15.0,
+        "confidence": 0.96,
+        "validation": "PASS",
+        "notes": "Extremely high dependency on last-minute same-day bookings"
+      },
+      "primary_length_of_stay": {
+        "segment": "1 night",
+        "share_pct": 71.0,
+        "comp_share_pct": 45.0,
+        "difference_pts": 26.0,
+        "confidence": 0.97,
+        "validation": "PASS",
+        "notes": "Predominantly single-night transit or weekend stays"
+      },
+      "primary_guest_origin": {
+        "country": "Thailand (Domestic)",
+        "share_pct": 89.0,
+        "comp_share_pct": 67.0,
+        "difference_pts": 22.0,
+        "confidence": 0.98,
+        "validation": "PASS",
+        "notes": "Strongly domestic guest base (89%); low international penetration"
+      },
+      "secondary_guest_origins": [
+        {
+          "country": "China",
+          "share_pct": 2.0
+        },
+        {
+          "country": "United Kingdom",
+          "share_pct": 2.0
+        },
+        {
+          "country": "Laos",
+          "share_pct": 1.0
+        },
+        {
+          "country": "India",
+          "share_pct": 1.0
+        }
+      ],
+      "content_improvement_opportunities": [
+        {
+          "item": "Add property facilities photos (Spa)",
+          "points": 1
+        },
+        {
+          "item": "Add Deluxe Partial Sea View Double room photos",
+          "points": 1
+        },
+        {
+          "item": "Add essential services (Airport transfer)",
+          "points": 10
+        },
+        {
+          "item": "Add room amenities (Ocean Queen, Deluxe Twin, Deluxe Double)",
+          "points": 1
+        }
+      ]
+    },
+    "layout_drift_detection": {
+      "status": "NORMAL",
+      "anchor_checks": {
+        "header_analytics": true,
+        "tab_traveler_insights": true,
+        "tab_content_score": true
+      },
+      "drift_score": 0.04
+    },
+    "human_review_required": false,
+    "review_reason": "All extracted confidence scores exceed 0.95 threshold."
+  },
+  {
+    "channel": "Expedia",
+    "portal_name": "Expedia Partner Central",
+    "file_source": "Expedia.pdf",
+    "date_range": "Trailing 30 days",
+    "comparison_benchmark": "Pattaya / Jomtien Competitive Set",
+    "metrics": {
+      "average_daily_rate": {
+        "value": 1520.0,
+        "currency": "THB",
+        "confidence": 0.92,
+        "validation": "PASS",
+        "notes": "Consistent with Expedia historical booking data"
+      },
+      "guest_rating": {
+        "value": 7.2,
+        "scale": "10.0",
+        "confidence": 0.88,
+        "validation": "PASS",
+        "notes": "Moderate rating"
+      },
+      "conversion_rate": {
+        "value": 1.45,
+        "unit": "%",
+        "confidence": 0.89,
+        "validation": "PASS",
+        "notes": "Normal Expedia conversion band"
+      }
+    },
+    "layout_drift_detection": {
+      "status": "NORMAL",
+      "anchor_checks": {
+        "header_partner_central": true,
+        "kpi_performance": true
+      },
+      "drift_score": 0.05
+    },
+    "human_review_required": false,
+    "review_reason": "Confidence scores above 0.85 threshold."
+  }
+]

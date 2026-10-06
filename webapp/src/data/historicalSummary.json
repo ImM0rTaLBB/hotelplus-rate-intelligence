@@ -1,0 +1,155 @@
+{
+  "total_stay_nights": 16372,
+  "channels": {
+    "Agoda": 10324,
+    "Trip.com": 3954,
+    "Expedia": 1095,
+    "Tiket": 820,
+    "Traveloka": 179
+  },
+  "room_counts": {
+    "Deluxe Room Double": 5945,
+    "Deluxe Room Twin Bed": 5607,
+    "Deluxe Double or Twin with Balcony": 2239,
+    "Double Room with Partial Sea View": 1576,
+    "Deluxe Sea Breeze Room": 913,
+    "Honeymoon Suite - King": 64,
+    "One Bed room Suite": 26,
+    "Ocean Queen Room": 2
+  },
+  "annual_adr": 1527,
+  "monthly_stats": [
+    {
+      "month": 1,
+      "name": "January",
+      "occ_2025": 0.9,
+      "occ_2026": 41.5,
+      "occ_avg": 21.2,
+      "adr_2025": 1978,
+      "adr_2026": 1503,
+      "adr_avg": 1518,
+      "season": "High"
+    },
+    {
+      "month": 2,
+      "name": "February",
+      "occ_2025": 1.2,
+      "occ_2026": 38.4,
+      "occ_avg": 19.8,
+      "adr_2025": 2088,
+      "adr_2026": 1383,
+      "adr_avg": 1414,
+      "season": "High"
+    },
+    {
+      "month": 3,
+      "name": "March",
+      "occ_2025": 0.2,
+      "occ_2026": 37.7,
+      "occ_avg": 19.0,
+      "adr_2025": 2157,
+      "adr_2026": 1495,
+      "adr_avg": 1499,
+      "season": "Shoulder"
+    },
+    {
+      "month": 4,
+      "name": "April",
+      "occ_2025": 2.8,
+      "occ_2026": 38.8,
+      "occ_avg": 20.8,
+      "adr_2025": 1739,
+      "adr_2026": 1654,
+      "adr_avg": 1658,
+      "season": "Shoulder"
+    },
+    {
+      "month": 5,
+      "name": "May",
+      "occ_2025": 7.7,
+      "occ_2026": 28.7,
+      "occ_avg": 18.2,
+      "adr_2025": 1626,
+      "adr_2026": 1644,
+      "adr_avg": 1640,
+      "season": "Low"
+    },
+    {
+      "month": 6,
+      "name": "June",
+      "occ_2025": 5.4,
+      "occ_2026": 16.0,
+      "occ_avg": 10.7,
+      "adr_2025": 1321,
+      "adr_2026": 1375,
+      "adr_avg": 1364,
+      "season": "Low"
+    },
+    {
+      "month": 7,
+      "name": "July",
+      "occ_2025": 5.8,
+      "occ_2026": 25.5,
+      "occ_avg": 15.6,
+      "adr_2025": 1476,
+      "adr_2026": 1457,
+      "adr_avg": 1460,
+      "season": "Shoulder"
+    },
+    {
+      "month": 8,
+      "name": "August",
+      "occ_2025": 3.8,
+      "occ_2026": 16.8,
+      "occ_avg": 10.3,
+      "adr_2025": 1658,
+      "adr_2026": 1472,
+      "adr_avg": 1494,
+      "season": "Shoulder"
+    },
+    {
+      "month": 9,
+      "name": "September",
+      "occ_2025": 1.6,
+      "occ_2026": 16.2,
+      "occ_avg": 8.9,
+      "adr_2025": 1944,
+      "adr_2026": 1274,
+      "adr_avg": 1291,
+      "season": "Low"
+    },
+    {
+      "month": 10,
+      "name": "October",
+      "occ_2025": 20.2,
+      "occ_2026": 9.3,
+      "occ_avg": 14.7,
+      "adr_2025": 1460,
+      "adr_2026": 1475,
+      "adr_avg": 1464,
+      "season": "Shoulder"
+    },
+    {
+      "month": 11,
+      "name": "November",
+      "occ_2025": 22.1,
+      "occ_2026": 2.6,
+      "occ_avg": 12.3,
+      "adr_2025": 1335,
+      "adr_2026": 1473,
+      "adr_avg": 1348,
+      "season": "Shoulder"
+    },
+    {
+      "month": 12,
+      "name": "December",
+      "occ_2025": 23.5,
+      "occ_2026": 7.0,
+      "occ_avg": 15.3,
+      "adr_2025": 1711,
+      "adr_2026": 2731,
+      "adr_avg": 1943,
+      "season": "High"
+    }
+  ]
+}

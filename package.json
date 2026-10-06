@@ -1,0 +1,19 @@
+{
+  "name": "hotelplus-rate-intelligence-root",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Hotel Plus Rate Intelligence Tool - Tech Lead Assessment",
+  "scripts": {
+    "dev": "npm run dev --prefix webapp",
+    "build": "npm run build --prefix webapp",
+    "start": "npm run start --prefix webapp",
+    "lint": "npm run lint --prefix webapp"
+  },
+  "keywords": [
+    "revenue-management",
+    "hotel-pricing",
+    "rate-intelligence"
+  ],
+  "author": "Tech Lead Candidate",
+  "license": "UNLICENSED"
+}

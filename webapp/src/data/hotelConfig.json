@@ -1,0 +1,55 @@
+{
+  "hotel_name": "H+ Property",
+  "location": "Jomtien, Pattaya",
+  "total_rooms": 144,
+  "room_tiers": [
+    {
+      "tier": 1,
+      "name": "Deluxe Room Twin Bed",
+      "rooms": 5,
+      "base_room": true
+    },
+    {
+      "tier": 2,
+      "name": "Deluxe Room Double",
+      "rooms": 53,
+      "base_room": false
+    },
+    {
+      "tier": 3,
+      "name": "Deluxe Double or Twin with Balcony",
+      "rooms": 37,
+      "base_room": false
+    },
+    {
+      "tier": 4,
+      "name": "Deluxe Sea Breeze Room",
+      "rooms": 29,
+      "base_room": false
+    },
+    {
+      "tier": 5,
+      "name": "Double Room with Partial Sea View",
+      "rooms": 16,
+      "base_room": false
+    },
+    {
+      "tier": 6,
+      "name": "Ocean Queen Room",
+      "rooms": 1,
+      "base_room": false
+    },
+    {
+      "tier": 7,
+      "name": "One Bed room Suite",
+      "rooms": 1,
+      "base_room": false
+    },
+    {
+      "tier": 8,
+      "name": "Honeymoon Suite - King",
+      "rooms": 2,
+      "base_room": false
+    }
+  ]
+}
