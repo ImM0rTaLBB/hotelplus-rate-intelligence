@@ -14,6 +14,7 @@ import {
 import { RateTrendVisualizer } from "@/components/RateTrendVisualizer";
 import { formatPrice } from "@/lib/formatters";
 import { useTheme } from "@/context/ThemeContext";
+import { CustomDropdown, DropdownOption } from "@/components/CustomDropdown";
 
 interface AuditLogEntry {
   timestamp: string;
@@ -41,6 +42,10 @@ export const PagePricing: React.FC = () => {
   const [manualOverrides, setManualOverrides] = useState<Record<number, number>>({});
   const [inspectingTier, setInspectingTier] = useState<number | null>(1);
   
+  // Sorting & Filtering for Rooms
+  const [roomSortBy, setRoomSortBy] = useState<string>("tier_asc");
+  const [roomFilterCategory, setRoomFilterCategory] = useState<string>("all");
+
   // Editing modal state
   const [editingTier, setEditingTier] = useState<number | null>(null);
   const [editInputPrice, setEditInputPrice] = useState<string>("");
@@ -177,14 +182,76 @@ export const PagePricing: React.FC = () => {
     URL.revokeObjectURL(url);
   };
 
-  const inspectedRoom = calculationResult.finalRatesByTier.find(t => t.tier === (inspectingTier || 1)) || calculationResult.finalRatesByTier[0];
+  // Sorting & Filtering Options for Room Ladder
+  const sortOptions: DropdownOption[] = [
+    { value: "tier_asc", label: "ลำดับห้อง (Tier 1 ➔ 8)" },
+    { value: "tier_desc", label: "ลำดับห้อง (Tier 8 ➔ 1)" },
+    { value: "price_asc", label: "ราคา: น้อย ➔ มาก" },
+    { value: "price_desc", label: "ราคา: มาก ➔ น้อย" },
+    { value: "rooms_desc", label: "จำนวนห้องในระบบ: มาก ➔ น้อย" },
+    { value: "name_asc", label: "ชื่อห้องพัก (A ➔ Z)" },
+  ];
+
+  const filterOptions: DropdownOption[] = [
+    { value: "all", label: "ทุกประเภทห้อง (8 ห้อง)" },
+    { value: "deluxe", label: "เฉพาะห้อง Deluxe (T1–T4)", badge: "4 ห้อง" },
+    { value: "suite", label: "เฉพาะห้อง Suite & Premier (T5–T8)", badge: "4 ห้อง" },
+    { value: "override", label: "เฉพาะห้องที่ปรับราคาเอง", badge: `${Object.keys(manualOverrides).length}` },
+  ];
 
   // Helper check for September inspection date
   const isSeptemberDate = currentInspectionDate.startsWith("2027-09");
   const isDecemberDate = currentInspectionDate.startsWith("2026-12");
 
+  // Season Preset Dropdown Options
+  const seasonPresetOptions: DropdownOption[] = [
+    { value: "high", label: "ธ.ค. 2026 (High Season Baseline)", badge: "High", description: "ราคาฐาน 963฿ ตามประวัติ A1" },
+    { value: "low", label: "ก.ย. 2027 (Low Season Baseline)", badge: "Low", description: "ราคาฐาน 974฿ วันธรรมดามาตรฐาน" },
+    { value: "peak_nye", label: "25 ธ.ค. 2026 (Christmas & New Year)", badge: "+40%", description: "Surge วันหยุดเทศกาลพีค" },
+    { value: "peak_songkran", label: "13 เม.ย. 2027 (เทศกาลสงกรานต์)", badge: "+25%", description: "Surge ปีใหม่ไทย" },
+  ];
+
+  const currentSeasonKey = currentInspectionDate === "2026-12-25"
+    ? "peak_nye"
+    : currentInspectionDate === "2027-04-13"
+    ? "peak_songkran"
+    : isSeptemberDate
+    ? "low"
+    : "high";
+
+  // Processed Room list based on sort & filter
+  const processedRooms = useMemo(() => {
+    let list = [...calculationResult.finalRatesByTier];
+
+    // Filter
+    if (roomFilterCategory === "deluxe") {
+      list = list.filter(r => r.tier <= 4);
+    } else if (roomFilterCategory === "suite") {
+      list = list.filter(r => r.tier >= 5);
+    } else if (roomFilterCategory === "override") {
+      list = list.filter(r => manualOverrides[r.tier] !== undefined);
+    }
+
+    // Sort
+    list.sort((a, b) => {
+      const priceA = manualOverrides[a.tier] !== undefined ? manualOverrides[a.tier] : a.suggestedRate;
+      const priceB = manualOverrides[b.tier] !== undefined ? manualOverrides[b.tier] : b.suggestedRate;
+
+      if (roomSortBy === "price_asc") return priceA - priceB;
+      if (roomSortBy === "price_desc") return priceB - priceA;
+      if (roomSortBy === "rooms_desc") return b.rooms - a.rooms;
+      if (roomSortBy === "name_asc") return a.roomName.localeCompare(b.roomName);
+      if (roomSortBy === "tier_desc") return b.tier - a.tier;
+      return a.tier - b.tier; // default: tier_asc
+    });
+
+    return list;
+  }, [calculationResult.finalRatesByTier, manualOverrides, roomSortBy, roomFilterCategory]);
+
+  const inspectedRoom = calculationResult.finalRatesByTier.find(t => t.tier === (inspectingTier || 1)) || calculationResult.finalRatesByTier[0];
+
   return (
-    <div className="space-y-7 select-none w-full max-w-7xl mx-auto">
+    <div className="space-y-7 select-none w-full">
       
       {/* Seamless Sub-header & View Perspective Selector (No Border Box) */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-3 border-b border-slate-200/80 dark:border-slate-800">
@@ -247,42 +314,51 @@ export const PagePricing: React.FC = () => {
       {/* Date Navigation & Reason Explainer Bar (Open Flow, No Border Box) */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         
-        {/* Preset Season Buttons */}
+        {/* Preset Season Controls: Custom Dropdown + Quick Pills */}
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs font-bold text-slate-900 dark:text-slate-100 mr-1">
-            ฤดูกาลตามโจทย์:
-          </span>
+          <CustomDropdown
+            label="ฤดูกาล"
+            value={currentSeasonKey}
+            onChange={(val) => {
+              if (val === "high") handleApplyPreset("2026-12-01", "2026-12-31", "2026-12-15");
+              else if (val === "low") handleApplyPreset("2027-09-01", "2027-09-30", "2027-09-15");
+              else if (val === "peak_nye") handleApplyPreset("2026-12-24", "2027-01-01", "2026-12-25");
+              else if (val === "peak_songkran") handleApplyPreset("2027-04-12", "2027-04-16", "2027-04-13");
+            }}
+            options={seasonPresetOptions}
+          />
+
           <button
             onClick={() => handleApplyPreset("2026-12-01", "2026-12-31", "2026-12-15")}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
-              isDecemberDate
+            className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
+              isDecemberDate && currentInspectionDate !== "2026-12-25"
                 ? "bg-sky-600 text-white shadow-xs"
-                : isLight ? "bg-slate-100 hover:bg-slate-200 text-slate-900" : "bg-[#111827] hover:bg-[#1E293B] text-slate-300"
+                : isLight ? "bg-slate-100 hover:bg-slate-200 text-slate-800" : "bg-[#111827] hover:bg-[#1E293B] text-slate-300"
             }`}
           >
-            ธ.ค. 2026 (High Season)
+            ธ.ค. 2026 (High)
           </button>
 
           <button
             onClick={() => handleApplyPreset("2027-09-01", "2027-09-30", "2027-09-15")}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
+            className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
               isSeptemberDate
                 ? "bg-sky-600 text-white shadow-xs"
-                : isLight ? "bg-slate-100 hover:bg-slate-200 text-slate-900" : "bg-[#111827] hover:bg-[#1E293B] text-slate-300"
+                : isLight ? "bg-slate-100 hover:bg-slate-200 text-slate-800" : "bg-[#111827] hover:bg-[#1E293B] text-slate-300"
             }`}
           >
-            ก.ย. 2027 (Low Season)
+            ก.ย. 2027 (Low)
           </button>
 
           <button
             onClick={() => handleApplyPreset("2026-12-24", "2027-01-01", "2026-12-25")}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
+            className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
               currentInspectionDate === "2026-12-25"
                 ? "bg-purple-600 text-white shadow-xs"
-                : isLight ? "bg-slate-100 hover:bg-slate-200 text-slate-900" : "bg-[#111827] hover:bg-[#1E293B] text-slate-300"
+                : isLight ? "bg-slate-100 hover:bg-slate-200 text-slate-800" : "bg-[#111827] hover:bg-[#1E293B] text-slate-300"
             }`}
           >
-            คริสต์มาส & ปีใหม่ (Peak +40%)
+            ปีใหม่ (Peak +40%)
           </button>
         </div>
 
@@ -664,7 +740,7 @@ export const PagePricing: React.FC = () => {
             
             {/* Left: Clean Minimalist Room Tier Ladder (Open Layout, lg:col-span-7) */}
             <div className="lg:col-span-7 space-y-3">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-200/80 dark:border-slate-800">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200/80 dark:border-slate-800 gap-3">
                 <div>
                   <h3 className="font-black text-lg text-slate-950 dark:text-white">
                     บันไดราคาห้องพัก 8 ระดับ (Room Escalation Ladder)
@@ -674,22 +750,51 @@ export const PagePricing: React.FC = () => {
                   </p>
                 </div>
 
-                {Object.keys(manualOverrides).length > 0 && (
-                  <button
-                    onClick={() => setManualOverrides({})}
-                    className="px-3 py-1 rounded-full bg-rose-100 hover:bg-rose-200 text-rose-900 text-xs font-bold transition-all"
-                  >
-                    รีเซ็ตค่าที่ปรับเอง ({Object.keys(manualOverrides).length})
-                  </button>
-                )}
+                <div className="flex flex-wrap items-center gap-2">
+                  <CustomDropdown
+                    label="เรียงตาม"
+                    value={roomSortBy}
+                    onChange={(val) => setRoomSortBy(val)}
+                    options={sortOptions}
+                    align="right"
+                  />
+
+                  <CustomDropdown
+                    label="กรอง"
+                    value={roomFilterCategory}
+                    onChange={(val) => setRoomFilterCategory(val)}
+                    options={filterOptions}
+                    align="right"
+                  />
+
+                  {Object.keys(manualOverrides).length > 0 && (
+                    <button
+                      onClick={() => setManualOverrides({})}
+                      className="px-3 py-1.5 rounded-xl bg-rose-100 hover:bg-rose-200 text-rose-900 text-xs font-bold transition-all shadow-2xs"
+                    >
+                      รีเซ็ต ({Object.keys(manualOverrides).length})
+                    </button>
+                  )}
+                </div>
               </div>
 
               {/* Clean Minimalist List (No vertical borders, spacious row hover) */}
               <div className="divide-y divide-slate-100 dark:divide-slate-800/60">
-                {calculationResult.finalRatesByTier.map((t, idx) => {
-                  const isInspected = inspectingTier === t.tier;
-                  const currentPrice = currentActiveRates[idx];
-                  const hasOverride = manualOverrides[t.tier] !== undefined;
+                {processedRooms.length === 0 ? (
+                  <div className="py-12 text-center text-slate-600 dark:text-slate-400 font-sans text-xs">
+                    ไม่พบห้องพักตามเงื่อนไขตัวกรอง{" "}
+                    <button
+                      onClick={() => setRoomFilterCategory("all")}
+                      className="text-sky-600 font-bold underline ml-1"
+                    >
+                      แสดงทั้งหมด
+                    </button>
+                  </div>
+                ) : (
+                  processedRooms.map((t) => {
+                    const isInspected = inspectingTier === t.tier;
+                    const currentPrice = manualOverrides[t.tier] !== undefined ? manualOverrides[t.tier] : t.suggestedRate;
+                    const hasOverride = manualOverrides[t.tier] !== undefined;
 
                   return (
                     <div
@@ -772,7 +877,7 @@ export const PagePricing: React.FC = () => {
                       </div>
                     </div>
                   );
-                })}
+                }))}
               </div>
             </div>
 

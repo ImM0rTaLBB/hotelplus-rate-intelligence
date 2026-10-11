@@ -11,6 +11,7 @@ import {
 import otaReportsData from "@/data/otaReports.json";
 import competitorAmenitiesData from "@/data/competitorAmenities.json";
 import { useTheme } from "@/context/ThemeContext";
+import { CustomDropdown, DropdownOption } from "@/components/CustomDropdown";
 
 interface ExtranetMetricVal {
   value?: number | string;
@@ -113,6 +114,44 @@ export const PageIngestion: React.FC = () => {
   const [isScrapingLive, setIsScrapingLive] = useState<boolean>(false);
   const [liveScrapeLog, setLiveScrapeLog] = useState<string | null>(null);
   const [editingAmenity, setEditingAmenity] = useState<CompetitorAmenity | null>(null);
+
+  // Compset Amenities Sorting & Filtering
+  const [compsetSortBy, setCompsetSortBy] = useState<string>("default");
+  const [compsetFilterPool, setCompsetFilterPool] = useState<string>("all");
+
+  const compsetSortOptions: DropdownOption[] = [
+    { value: "default", label: "เรียงตาม: ลำดับมาตรฐาน" },
+    { value: "rating_desc", label: "คะแนนรีวิว: มาก ➔ น้อย" },
+    { value: "dist_asc", label: "ระยะทางหาด: ใกล้ที่สุดก่อน" },
+    { value: "stars_desc", label: "ดาวโรงแรม: มาก ➔ น้อย" },
+    { value: "rooms_desc", label: "จำนวนห้อง: มาก ➔ น้อย" },
+  ];
+
+  const compsetFilterOptions: DropdownOption[] = [
+    { value: "all", label: "โรงแรมทั้งหมด (6 แห่ง)" },
+    { value: "has_pool", label: "เฉพาะที่มีสระว่ายน้ำ", badge: "Pool" },
+    { value: "near_beach", label: "ระยะหาด ≤ 100 เมตร", badge: "ใกล้หาด" },
+  ];
+
+  const processedCompset = useMemo(() => {
+    let list = [...compsetAmenities];
+    if (compsetFilterPool === "has_pool") {
+      list = list.filter(h => h.has_swimming_pool);
+    } else if (compsetFilterPool === "near_beach") {
+      list = list.filter(h => h.beach_distance_meters <= 100);
+    }
+
+    if (compsetSortBy === "rating_desc") {
+      list.sort((a, b) => b.review_score - a.review_score);
+    } else if (compsetSortBy === "dist_asc") {
+      list.sort((a, b) => a.beach_distance_meters - b.beach_distance_meters);
+    } else if (compsetSortBy === "stars_desc") {
+      list.sort((a, b) => b.star_rating - a.star_rating);
+    } else if (compsetSortBy === "rooms_desc") {
+      list.sort((a, b) => b.total_rooms - a.total_rooms);
+    }
+    return list;
+  }, [compsetAmenities, compsetSortBy, compsetFilterPool]);
 
   useEffect(() => {
     return () => {
@@ -429,37 +468,51 @@ export const PageIngestion: React.FC = () => {
 
           {/* Action Bar & Upload Trigger */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div className="flex items-center space-x-2 overflow-x-auto pb-1 max-w-full">
-              <span className={`text-xs font-bold shrink-0 ${isLight ? "text-slate-600" : "text-slate-400"}`}>
-                เลือกดูรายงาน OTA (6 แหล่ง):
-              </span>
-              {reports.map((r) => {
-                const isSelected = selectedChannel.toLowerCase() === r.channel.toLowerCase();
-                return (
-                  <button
-                    key={r.channel}
-                    onClick={() => {
-                      setSelectedChannel(r.channel);
-                      setSelectedPageNum(1);
-                      clearUploadedState();
-                    }}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border shrink-0 flex items-center space-x-1.5 ${
-                      isSelected
-                        ? isLight
-                          ? "bg-sky-600 text-white border-sky-700 shadow-xs"
-                          : "bg-cyan-950 text-cyan-300 border-cyan-500 shadow-sm"
-                        : isLight
-                        ? "bg-white text-slate-700 hover:bg-slate-100 border-slate-300"
-                        : "bg-[#0B0F1A] text-slate-300 hover:bg-[#151D2C] border-[#1E293B]"
-                    }`}
-                  >
-                    <span>{r.channel}</span>
-                    {r.human_review_required && (
-                      <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" title="ต้องตรวจสอบ" />
-                    )}
-                  </button>
-                );
-              })}
+            <div className="flex flex-wrap items-center gap-2">
+              <CustomDropdown
+                label="ช่องทาง OTA"
+                value={selectedChannel}
+                onChange={(val) => {
+                  setSelectedChannel(val);
+                  setSelectedPageNum(1);
+                  clearUploadedState();
+                }}
+                options={reports.map((r) => ({
+                  value: r.channel,
+                  label: r.channel,
+                  badge: `${r.image_pages?.length || 1} หน้า`,
+                  description: r.file_source
+                }))}
+              />
+              <div className="hidden md:flex items-center space-x-1.5 overflow-x-auto pb-0.5">
+                {reports.map((r) => {
+                  const isSelected = selectedChannel.toLowerCase() === r.channel.toLowerCase();
+                  return (
+                    <button
+                      key={r.channel}
+                      onClick={() => {
+                        setSelectedChannel(r.channel);
+                        setSelectedPageNum(1);
+                        clearUploadedState();
+                      }}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border shrink-0 flex items-center space-x-1.5 ${
+                        isSelected
+                          ? isLight
+                            ? "bg-sky-600 text-white border-sky-700 shadow-xs"
+                            : "bg-cyan-950 text-cyan-300 border-cyan-500 shadow-sm"
+                          : isLight
+                          ? "bg-white text-slate-700 hover:bg-slate-100 border-slate-300"
+                          : "bg-[#0B0F1A] text-slate-300 hover:bg-[#151D2C] border-[#1E293B]"
+                      }`}
+                    >
+                      <span>{r.channel}</span>
+                      {r.human_review_required && (
+                        <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" title="ต้องตรวจสอบ" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             <div className="flex items-center space-x-2 shrink-0">
@@ -825,7 +878,23 @@ export const PageIngestion: React.FC = () => {
               </p>
             </div>
 
-            <div className="flex items-center space-x-2 shrink-0">
+            <div className="flex flex-wrap items-center gap-2 shrink-0">
+              <CustomDropdown
+                label="เรียงลำดับ"
+                value={compsetSortBy}
+                onChange={(val) => setCompsetSortBy(val)}
+                options={compsetSortOptions}
+                align="right"
+              />
+
+              <CustomDropdown
+                label="กรอง"
+                value={compsetFilterPool}
+                onChange={(val) => setCompsetFilterPool(val)}
+                options={compsetFilterOptions}
+                align="right"
+              />
+
               <button
                 onClick={handleTriggerLiveScraper}
                 disabled={isScrapingLive}
@@ -887,7 +956,7 @@ export const PageIngestion: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody className={`divide-y ${isLight ? "divide-slate-200" : "divide-[#151D2C]"}`}>
-                  {compsetAmenities.map((hotel) => {
+                  {processedCompset.map((hotel) => {
                     const isOur = hotel.is_our_property;
                     return (
                       <tr 

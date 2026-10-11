@@ -22,7 +22,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
           ? "bg-white/95 border-slate-200 text-slate-900" 
           : "bg-[#070A12]/95 border-slate-800 text-slate-100"
       }`}>
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
           
           {/* Left: Brand & Property Identity */}
           <div className="flex items-center space-x-3 shrink-0">

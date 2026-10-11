@@ -18,7 +18,7 @@ function MainApp() {
       <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
 
       {/* Main Container - Full Width & Mobile Responsive */}
-      <main className="w-full px-2 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6">
+      <main className="w-full px-4 sm:px-6 lg:px-8 py-5">
         {activeTab === "ingest" && <PageIngestion />}
         {activeTab === "pricing" && <PagePricing />}
         {activeTab === "answers" && <PageAnswers />}
@@ -26,7 +26,7 @@ function MainApp() {
 
       {/* Modern Minimal Footer - Full Width */}
       <footer className={`border-t py-6 mt-12 text-xs sm:text-sm font-mono ${isLight ? "bg-white border-slate-200 text-slate-600" : "border-slate-900 bg-[#060910] text-slate-400"}`}>
-        <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono">
+        <div className="w-full px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono">
           <div className="flex items-center space-x-2">
             <span className="w-2.5 h-2.5 rounded-full bg-sky-500"></span>
             <span className={`font-bold ${isLight ? "text-slate-800" : "text-slate-300"}`}>ระบบบริหารและวิเคราะห์ราคาห้องพัก Hotel Plus</span>
