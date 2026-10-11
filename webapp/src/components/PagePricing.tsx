@@ -184,86 +184,80 @@ export const PagePricing: React.FC = () => {
   const isDecemberDate = currentInspectionDate.startsWith("2026-12");
 
   return (
-    <div className="space-y-6 select-none w-full">
+    <div className="space-y-7 select-none w-full max-w-7xl mx-auto">
       
-      {/* Top Banner & View Perspective Selector */}
-      <div className={`border p-4 sm:p-5 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 transition-colors ${
-        isLight ? "bg-white border-slate-200 text-slate-800 shadow-xs" : "bg-[#090D17] border-[#1E293B] text-slate-100"
-      }`}>
+      {/* Seamless Sub-header & View Perspective Selector (No Border Box) */}
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-3 border-b border-slate-200/80 dark:border-slate-800">
         <div>
           <div className="flex items-center space-x-2 text-xs mb-1 font-bold">
-            <span className={`px-2 py-0.5 rounded border ${
-              isLight ? "text-sky-800 bg-sky-50 border-sky-300" : "text-cyan-400 bg-cyan-950/80 border-cyan-800"
-            }`}>
-              PAGE 2: DYNAMIC PRICING ENGINE
+            <span className="px-2.5 py-0.5 rounded-full bg-sky-100 text-sky-900 dark:bg-sky-950 dark:text-sky-300 font-mono">
+              DYNAMIC RATE ENGINE
             </span>
             <span className="text-slate-400">•</span>
-            <span className={`font-mono text-xs ${isLight ? "text-slate-600" : "text-slate-400"}`}>
+            <span className="font-mono text-xs text-slate-800 dark:text-slate-200 font-bold">
               {calculationResult.season} Season • {calculationResult.isWeekend ? "วันหยุดสุดสัปดาห์" : calculationResult.isSpecialDay ? "วันพิเศษ" : "วันธรรมดา"}
             </span>
           </div>
-          <h1 className={`text-base sm:text-lg font-bold tracking-tight ${isLight ? "text-slate-900" : "text-slate-100"}`}>
-            ระบบกำหนดและเสนอราคาห้องพักอัจฉริยะ (Rate Intelligence Terminal)
+          <h1 className="text-xl sm:text-2xl font-black tracking-tight text-slate-950 dark:text-white">
+            ระบบกำหนดและเสนอราคาห้องพักอัจฉริยะ
           </h1>
-          <p className={`text-xs sm:text-sm mt-1 font-sans ${isLight ? "text-slate-600" : "text-slate-400"}`}>
-            คำนวณราคาอัตโนมัติตามกฎ RM Playbook (P0–P8) พร้อมระบบตรวจสอบและบันทึกประวัติการปรับราคา
+          <p className="text-xs sm:text-sm mt-0.5 font-sans text-slate-700 dark:text-slate-300 font-medium">
+            คำนวณราคาพลวัตอัตโนมัติตามกฎ Playbook P0–P8 พร้อมเปรียบเทียบตลาดแบบเรียลไทม์
           </p>
         </div>
 
-        {/* View Perspective Switcher: Commercial vs Admin Console */}
-        <div className={`flex items-center space-x-1.5 p-1.5 rounded-lg border shrink-0 ${
-          isLight ? "bg-slate-100 border-slate-200" : "bg-[#04060A] border-[#1E293B]"
+        {/* View Perspective Switcher: Commercial vs Admin Console (Seamless Pills) */}
+        <div className={`flex items-center space-x-1 p-1 rounded-xl shrink-0 transition-all ${
+          isLight ? "bg-slate-100" : "bg-[#111827]"
         }`}>
           <button
             onClick={() => setViewPerspective("commercial")}
-            className={`px-3.5 py-2 rounded-md transition-all flex items-center space-x-2 font-bold text-xs sm:text-sm ${
+            className={`px-3.5 py-1.5 rounded-lg transition-all flex items-center space-x-2 font-bold text-xs sm:text-sm ${
               viewPerspective === "commercial"
                 ? isLight
-                  ? "bg-white text-sky-800 border border-sky-300 shadow-xs"
-                  : "bg-[#1E293B] text-cyan-300 border border-cyan-600 shadow-sm"
+                  ? "bg-white text-slate-950 shadow-xs"
+                  : "bg-[#1F2937] text-white shadow-xs"
                 : isLight
-                ? "text-slate-600 hover:text-slate-900"
-                : "text-slate-400 hover:text-slate-200"
+                ? "text-slate-700 hover:text-slate-950"
+                : "text-slate-400 hover:text-white"
             }`}
           >
-            <UserCheck className="w-4 h-4" />
-            <span>โหมดผู้ใช้งานทั่วไป (Commercial)</span>
+            <UserCheck className="w-4 h-4 text-sky-600" />
+            <span>โหมดผู้บริหารทั่วไป</span>
           </button>
 
           <button
             onClick={() => setViewPerspective("admin")}
-            className={`px-3.5 py-2 rounded-md transition-all flex items-center space-x-2 font-bold text-xs sm:text-sm ${
+            className={`px-3.5 py-1.5 rounded-lg transition-all flex items-center space-x-2 font-bold text-xs sm:text-sm ${
               viewPerspective === "admin"
                 ? isLight
-                  ? "bg-white text-purple-800 border border-purple-300 shadow-xs"
-                  : "bg-purple-950 text-purple-300 border border-purple-600 shadow-sm"
+                  ? "bg-white text-purple-950 shadow-xs"
+                  : "bg-[#1F2937] text-purple-300 shadow-xs"
                 : isLight
-                ? "text-slate-600 hover:text-slate-900"
-                : "text-slate-400 hover:text-slate-200"
+                ? "text-slate-700 hover:text-slate-950"
+                : "text-slate-400 hover:text-white"
             }`}
           >
-            <Settings className="w-4 h-4" />
-            <span>Admin Console & ตรวจสูตร</span>
+            <Settings className="w-4 h-4 text-purple-600" />
+            <span>Admin ตรวจสูตรคณิตศาสตร์</span>
           </button>
         </div>
       </div>
 
-      {/* Date Navigation & Reason Explainer Bar */}
-      <div className={`border p-4 rounded-xl flex flex-col lg:flex-row lg:items-center justify-between gap-4 ${
-        isLight ? "bg-white border-slate-200 shadow-xs" : "bg-[#0B0F1A] border-[#1E293B]"
-      }`}>
+      {/* Date Navigation & Reason Explainer Bar (Open Flow, No Border Box) */}
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         
         {/* Preset Season Buttons */}
         <div className="flex flex-wrap items-center gap-2">
-          <span className={`text-xs font-bold mr-1 ${isLight ? "text-slate-900" : "text-slate-200"}`}>
+          <span className="text-xs font-bold text-slate-900 dark:text-slate-100 mr-1">
             ฤดูกาลตามโจทย์:
           </span>
           <button
             onClick={() => handleApplyPreset("2026-12-01", "2026-12-31", "2026-12-15")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
+            className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
               isDecemberDate
-                ? isLight ? "bg-sky-600 text-white border-sky-700 shadow-xs" : "bg-cyan-950 text-cyan-300 border-cyan-600 shadow-sm"
-                : isLight ? "bg-slate-100 text-slate-800 hover:bg-slate-200 border-slate-300" : "bg-[#111827] text-slate-300 hover:bg-[#1E293B] border-slate-800"
+                ? "bg-sky-600 text-white shadow-xs"
+                : isLight ? "bg-slate-100 hover:bg-slate-200 text-slate-900" : "bg-[#111827] hover:bg-[#1E293B] text-slate-300"
             }`}
           >
             ธ.ค. 2026 (High Season)
@@ -271,10 +265,10 @@ export const PagePricing: React.FC = () => {
 
           <button
             onClick={() => handleApplyPreset("2027-09-01", "2027-09-30", "2027-09-15")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
+            className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
               isSeptemberDate
-                ? isLight ? "bg-sky-600 text-white border-sky-700 shadow-xs" : "bg-cyan-950 text-cyan-300 border-cyan-600 shadow-sm"
-                : isLight ? "bg-slate-100 text-slate-800 hover:bg-slate-200 border-slate-300" : "bg-[#111827] text-slate-300 hover:bg-[#1E293B] border-slate-800"
+                ? "bg-sky-600 text-white shadow-xs"
+                : isLight ? "bg-slate-100 hover:bg-slate-200 text-slate-900" : "bg-[#111827] hover:bg-[#1E293B] text-slate-300"
             }`}
           >
             ก.ย. 2027 (Low Season)
@@ -282,10 +276,10 @@ export const PagePricing: React.FC = () => {
 
           <button
             onClick={() => handleApplyPreset("2026-12-24", "2027-01-01", "2026-12-25")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
+            className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
               currentInspectionDate === "2026-12-25"
-                ? isLight ? "bg-purple-600 text-white border-purple-700 shadow-xs" : "bg-purple-950 text-purple-300 border-purple-600 shadow-sm"
-                : isLight ? "bg-slate-100 text-slate-800 hover:bg-slate-200 border-slate-300" : "bg-[#111827] text-slate-300 hover:bg-[#1E293B] border-slate-800"
+                ? "bg-purple-600 text-white shadow-xs"
+                : isLight ? "bg-slate-100 hover:bg-slate-200 text-slate-900" : "bg-[#111827] hover:bg-[#1E293B] text-slate-300"
             }`}
           >
             คริสต์มาส & ปีใหม่ (Peak +40%)
@@ -297,29 +291,29 @@ export const PagePricing: React.FC = () => {
           
           {/* Quick Date Shortcuts for Current Month */}
           {isSeptemberDate && (
-            <div className="flex items-center space-x-1">
-              <span className="text-[11px] text-slate-700 font-bold font-sans">เลือกวัน:</span>
+            <div className="flex items-center space-x-1.5">
+              <span className="text-xs text-slate-800 dark:text-slate-200 font-bold font-sans">เลือกวัน:</span>
               <button
                 onClick={() => setCurrentInspectionDate("2027-09-01")}
-                className={`px-2 py-1 rounded text-xs border font-medium ${
-                  currentInspectionDate === "2027-09-01" ? "bg-sky-600 text-white font-bold border-sky-700" : isLight ? "bg-slate-100 text-slate-800 border-slate-300" : "bg-slate-800 text-slate-200 border-slate-700"
+                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                  currentInspectionDate === "2027-09-01" ? "bg-sky-600 text-white" : isLight ? "bg-slate-100 hover:bg-slate-200 text-slate-900" : "bg-slate-800 text-slate-200"
                 }`}
               >
-                1 ก.ย. (พุธ)
+                1 ก.ย.
               </button>
               <button
                 onClick={() => setCurrentInspectionDate("2027-09-15")}
-                className={`px-2 py-1 rounded text-xs border font-medium ${
-                  currentInspectionDate === "2027-09-15" ? "bg-sky-600 text-white font-bold border-sky-700" : isLight ? "bg-slate-100 text-slate-800 border-slate-300" : "bg-slate-800 text-slate-200 border-slate-700"
+                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                  currentInspectionDate === "2027-09-15" ? "bg-sky-600 text-white" : isLight ? "bg-slate-100 hover:bg-slate-200 text-slate-900" : "bg-slate-800 text-slate-200"
                 }`}
                 title="วันธรรมดากลางเดือน (Mid-Month Weekday Baseline)"
               >
-                15 ก.ย. (ตัวแทนกลางเดือน)
+                15 ก.ย. (กลางเดือน)
               </button>
               <button
                 onClick={() => setCurrentInspectionDate("2027-09-18")}
-                className={`px-2 py-1 rounded text-xs border font-medium ${
-                  currentInspectionDate === "2027-09-18" ? "bg-sky-600 text-white font-bold border-sky-700" : isLight ? "bg-slate-100 text-slate-800 border-slate-300" : "bg-slate-800 text-slate-200 border-slate-700"
+                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                  currentInspectionDate === "2027-09-18" ? "bg-sky-600 text-white" : isLight ? "bg-slate-100 hover:bg-slate-200 text-slate-900" : "bg-slate-800 text-slate-200"
                 }`}
                 title="วันเสาร์ (Weekend Sample)"
               >
@@ -329,28 +323,28 @@ export const PagePricing: React.FC = () => {
           )}
 
           {isDecemberDate && (
-            <div className="flex items-center space-x-1">
-              <span className="text-[11px] text-slate-700 font-bold font-sans">เลือกวัน:</span>
+            <div className="flex items-center space-x-1.5">
+              <span className="text-xs text-slate-800 dark:text-slate-200 font-bold font-sans">เลือกวัน:</span>
               <button
                 onClick={() => setCurrentInspectionDate("2026-12-01")}
-                className={`px-2 py-1 rounded text-xs border font-medium ${
-                  currentInspectionDate === "2026-12-01" ? "bg-sky-600 text-white font-bold border-sky-700" : isLight ? "bg-slate-100 text-slate-800 border-slate-300" : "bg-slate-800 text-slate-200 border-slate-700"
+                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                  currentInspectionDate === "2026-12-01" ? "bg-sky-600 text-white" : isLight ? "bg-slate-100 hover:bg-slate-200 text-slate-900" : "bg-slate-800 text-slate-200"
                 }`}
               >
                 1 ธ.ค.
               </button>
               <button
                 onClick={() => setCurrentInspectionDate("2026-12-15")}
-                className={`px-2 py-1 rounded text-xs border font-medium ${
-                  currentInspectionDate === "2026-12-15" ? "bg-sky-600 text-white font-bold border-sky-700" : isLight ? "bg-slate-100 text-slate-800 border-slate-300" : "bg-slate-800 text-slate-200 border-slate-700"
+                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                  currentInspectionDate === "2026-12-15" ? "bg-sky-600 text-white" : isLight ? "bg-slate-100 hover:bg-slate-200 text-slate-900" : "bg-slate-800 text-slate-200"
                 }`}
               >
-                15 ธ.ค. (ตัวแทนกลางเดือน)
+                15 ธ.ค. (กลางเดือน)
               </button>
               <button
                 onClick={() => setCurrentInspectionDate("2026-12-19")}
-                className={`px-2 py-1 rounded text-xs border font-medium ${
-                  currentInspectionDate === "2026-12-19" ? "bg-sky-600 text-white font-bold border-sky-700" : isLight ? "bg-slate-100 text-slate-800 border-slate-300" : "bg-slate-800 text-slate-200 border-slate-700"
+                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                  currentInspectionDate === "2026-12-19" ? "bg-sky-600 text-white" : isLight ? "bg-slate-100 hover:bg-slate-200 text-slate-900" : "bg-slate-800 text-slate-200"
                 }`}
               >
                 19 ธ.ค. (เสาร์)
@@ -365,8 +359,8 @@ export const PagePricing: React.FC = () => {
               type="date"
               value={currentInspectionDate}
               onChange={(e) => setCurrentInspectionDate(e.target.value)}
-              className={`px-2.5 py-1 rounded-lg border text-xs font-mono font-bold focus:outline-none ${
-                isLight ? "bg-white border-slate-300 text-slate-800" : "bg-[#070A12] border-[#1E293B] text-slate-200"
+              className={`px-3 py-1 rounded-lg text-xs font-mono font-bold focus:outline-none ${
+                isLight ? "bg-slate-100 text-slate-900" : "bg-[#111827] text-slate-100"
               }`}
             />
           </div>
@@ -374,9 +368,7 @@ export const PagePricing: React.FC = () => {
           {/* "ทำไมจึงเป็น 15 กันยายน?" Explainer Trigger */}
           <button
             onClick={() => setShowDateReasoningModal(true)}
-            className={`px-2.5 py-1 rounded-lg border text-xs font-sans flex items-center space-x-1 transition-all ${
-              isLight ? "bg-amber-50 hover:bg-amber-100 border-amber-300 text-amber-900" : "bg-amber-950/60 hover:bg-amber-900 border-amber-700 text-amber-300"
-            }`}
+            className="px-2.5 py-1 rounded-lg text-xs font-bold transition-all flex items-center space-x-1 bg-amber-500/10 text-amber-950 dark:text-amber-300 hover:bg-amber-500/20"
             title="คลิกเพื่อดูคำอธิบาย: ทำไมระบบจึงแนะนำวันที่ 15 กันยายน?"
           >
             <HelpCircle className="w-3.5 h-3.5 text-amber-600" />
@@ -386,25 +378,23 @@ export const PagePricing: React.FC = () => {
           {/* Toggle Trend Visualizer Button */}
           <button
             onClick={() => setShowVisualizer(!showVisualizer)}
-            className={`px-3 py-1 rounded-lg text-xs font-bold border transition-all flex items-center space-x-1 ${
+            className={`px-3 py-1 rounded-lg text-xs font-bold transition-all flex items-center space-x-1 ${
               showVisualizer
-                ? isLight ? "bg-sky-100 text-sky-800 border-sky-300" : "bg-cyan-950 text-cyan-300 border-cyan-700"
-                : isLight ? "bg-white text-slate-700 border-slate-300" : "bg-[#070A12] text-slate-400 border-slate-700"
+                ? "bg-sky-600 text-white"
+                : isLight ? "bg-slate-100 hover:bg-slate-200 text-slate-800" : "bg-slate-800 text-slate-300"
             }`}
           >
             <TrendingUp className="w-3.5 h-3.5" />
-            <span>{showVisualizer ? "ซ่อนกราฟแนวโน้ม" : "ดูกราฟแนวโน้ม"}</span>
+            <span>{showVisualizer ? "ซ่อนกราฟ" : "ดูกราฟแนวโน้ม"}</span>
           </button>
 
           {/* Export PMS / SiteMinder CSV */}
           <button
             onClick={handleExportPMSCsv}
-            className={`px-3 py-1 rounded-lg text-xs font-bold border transition-all flex items-center space-x-1 shadow-2xs ${
-              isLight ? "bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border-emerald-300" : "bg-emerald-950/70 hover:bg-emerald-900 text-emerald-300 border-emerald-700"
-            }`}
+            className="px-3.5 py-1 rounded-lg text-xs font-bold transition-all flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-700 text-white shadow-xs"
             title="ดาวน์โหลดตารางราคาเพื่อนำเข้า Opera PMS / SiteMinder"
           >
-            <Download className="w-3.5 h-3.5 text-emerald-600" />
+            <Download className="w-3.5 h-3.5" />
             <span>ส่งออก PMS (.csv)</span>
           </button>
         </div>
@@ -414,8 +404,8 @@ export const PagePricing: React.FC = () => {
       {/* Date Reason Explainer Modal / Card */}
       {showDateReasoningModal && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-          <div className={`border rounded-xl max-w-lg w-full p-5 sm:p-6 shadow-2xl transition-colors ${
-            isLight ? "bg-white border-slate-300 text-slate-800" : "bg-[#0B0F1A] border-[#334155] text-slate-100"
+          <div className={`rounded-2xl max-w-lg w-full p-6 shadow-2xl transition-colors ${
+            isLight ? "bg-white text-slate-900 border border-slate-200" : "bg-[#0B0F1A] border border-slate-800 text-slate-100"
           }`}>
             <div className={`flex items-center justify-between pb-3 border-b mb-3 ${isLight ? "border-slate-200" : "border-[#1E293B]"}`}>
               <div className="flex items-center space-x-2">
@@ -430,7 +420,7 @@ export const PagePricing: React.FC = () => {
               </button>
             </div>
 
-            <div className="space-y-3 font-sans text-xs sm:text-sm leading-relaxed">
+            <div className="space-y-3 font-sans text-xs sm:text-sm leading-relaxed text-slate-800 dark:text-slate-200">
               <p>
                 <strong>1. ตัวแทนวันธรรมดามาตรฐาน (Mid-Month Weekday Baseline):</strong><br />
                 วันที่ 15 กันยายน 2027 ตรงกับ <strong>วันพุธ</strong> ซึ่งอยู่กึ่งกลางเดือน เป็นวันที่ไม่มีความผันผวนของรอบการจ่ายเงินเดือน (Payday effect ช่วงต้น/ปลายเดือน) และไม่มีการหยุดชดเชยวันหยุดราชการ จึงสะท้อนราคาฐาน Low Season ตามธรรมชาติได้แม่นยำที่สุด
@@ -472,28 +462,28 @@ export const PagePricing: React.FC = () => {
       {/* PERSPECTIVE 1: COMMERCIAL / USER-FRIENDLY VIEW (ORGANIZED & INTUITIVE)     */}
       {/* ========================================================================= */}
       {viewPerspective === "commercial" && (
-        <div className="space-y-6">
+        <div className="space-y-7">
 
-          {/* Executive What-If Scenario Sandbox */}
-          <div className={`p-4 rounded-xl border transition-all ${
+          {/* Executive What-If Scenario Sandbox (Borderless Soft Strip) */}
+          <div className={`p-4 sm:p-5 rounded-2xl transition-all ${
             activeScenario !== "normal"
-              ? isLight ? "bg-amber-50/70 border-amber-300 shadow-sm" : "bg-amber-950/20 border-amber-700/80 shadow-md"
-              : isLight ? "bg-white border-slate-200 shadow-xs" : "bg-[#0B0F1A] border-[#1E293B]"
+              ? isLight ? "bg-amber-50/90 border border-amber-200" : "bg-amber-950/20 border border-amber-800"
+              : isLight ? "bg-slate-100/70" : "bg-[#0c111d]"
           }`}>
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
               <div>
                 <div className="flex items-center space-x-2">
-                  <Sparkles className={`w-4 h-4 ${activeScenario !== "normal" ? "text-amber-600 animate-pulse" : isLight ? "text-sky-600" : "text-cyan-400"}`} />
-                  <span className={`font-bold text-xs sm:text-sm ${isLight ? "text-slate-900" : "text-slate-100"}`}>
-                    🔮 แบบจำลองความไวตลาด (What-If Market Sensitivity Sandbox)
+                  <Sparkles className={`w-4 h-4 ${activeScenario !== "normal" ? "text-amber-600 animate-pulse" : "text-sky-600"}`} />
+                  <span className="font-black text-xs sm:text-sm text-slate-950 dark:text-white">
+                    แบบจำลองความไวตลาด (What-If Market Sensitivity Sandbox)
                   </span>
                   {activeScenario !== "normal" && (
-                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500 text-white animate-pulse">
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-amber-500 text-slate-950 animate-pulse">
                       SIMULATION ACTIVE
                     </span>
                   )}
                 </div>
-                <p className={`text-xs font-sans mt-0.5 ${isLight ? "text-slate-700 font-medium" : "text-slate-300"}`}>
+                <p className="text-xs font-sans mt-0.5 text-slate-700 dark:text-slate-300 font-medium">
                   ทดสอบการตอบสนองของระบบราคาอัตโนมัติ เมื่อตลาดเกิดการเปลี่ยนแปลงฉับพลันในสถานการณ์จริง
                 </p>
               </div>
@@ -502,40 +492,40 @@ export const PagePricing: React.FC = () => {
               <div className="flex flex-wrap items-center gap-1.5 shrink-0">
                 <button
                   onClick={() => setActiveScenario("normal")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                     activeScenario === "normal"
-                      ? isLight ? "bg-slate-900 text-white border-slate-900" : "bg-cyan-500 text-black border-cyan-400"
-                      : isLight ? "bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300" : "bg-[#111827] text-slate-400 border-slate-800"
+                      ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950 shadow-xs"
+                      : isLight ? "bg-white text-slate-800 hover:bg-slate-200" : "bg-[#162035] text-slate-300 hover:text-white"
                   }`}
                 >
                   สภาวะปกติ (Baseline)
                 </button>
                 <button
                   onClick={() => setActiveScenario("price_war")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                     activeScenario === "price_war"
-                      ? "bg-rose-600 text-white border-rose-700 shadow-xs"
-                      : isLight ? "bg-rose-50 text-rose-800 hover:bg-rose-100 border-rose-200" : "bg-rose-950/40 text-rose-300 border-rose-800"
+                      ? "bg-rose-600 text-white shadow-xs"
+                      : isLight ? "bg-white text-rose-950 hover:bg-rose-50" : "bg-[#162035] text-rose-300 hover:text-white"
                   }`}
                 >
                   📉 สงครามราคา (-20%)
                 </button>
                 <button
                   onClick={() => setActiveScenario("demand_surge")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                     activeScenario === "demand_surge"
-                      ? "bg-emerald-600 text-white border-emerald-700 shadow-xs"
-                      : isLight ? "bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border-emerald-200" : "bg-emerald-950/40 text-emerald-300 border-emerald-800"
+                      ? "bg-emerald-600 text-white shadow-xs"
+                      : isLight ? "bg-white text-emerald-950 hover:bg-emerald-50" : "bg-[#162035] text-emerald-300 hover:text-white"
                   }`}
                 >
                   ⚡ อุปสงค์พุ่งสูง (+25%)
                 </button>
                 <button
                   onClick={() => setActiveScenario("compset_sold_out")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                     activeScenario === "compset_sold_out"
-                      ? "bg-purple-600 text-white border-purple-700 shadow-xs"
-                      : isLight ? "bg-purple-50 text-purple-800 hover:bg-purple-100 border-purple-200" : "bg-purple-950/40 text-purple-300 border-purple-800"
+                      ? "bg-purple-600 text-white shadow-xs"
+                      : isLight ? "bg-white text-purple-950 hover:bg-purple-50" : "bg-[#162035] text-purple-300 hover:text-white"
                   }`}
                 >
                   🏨 คู่แข่ง 3 แห่งห้องเต็ม
@@ -545,13 +535,11 @@ export const PagePricing: React.FC = () => {
 
             {/* Scenario Narrative Explanation (Concise & High Contrast) */}
             {activeScenario !== "normal" && (
-              <div className={`mt-3 pt-2.5 border-t text-xs font-sans flex items-center space-x-2 ${
-                isLight ? "border-amber-300 text-slate-900" : "border-amber-700 text-amber-200"
-              }`}>
+              <div className="mt-3 pt-2.5 border-t border-amber-300/60 dark:border-amber-700/60 text-xs font-sans flex items-center space-x-2">
                 <span className="font-bold px-2 py-0.5 rounded text-[11px] bg-amber-500 text-slate-950 shrink-0">
                   ⚡ ผลลัพธ์
                 </span>
-                <span className="font-semibold text-slate-800 dark:text-amber-200">
+                <span className="font-bold text-slate-950 dark:text-amber-200">
                   {activeScenario === "price_war" && `มัธยฐานคู่แข่งลดเหลือ ~${Math.round(calculationResult.competitorMetrics.medianCompetitorRate * 0.8)}฿ ➔ ปรับลดราคาเพื่อรักษาส่วนแบ่งตลาด (ล็อกห้ามต่ำกว่า 85% Floor เสมอ)`}
                   {activeScenario === "demand_surge" && `มัธยฐานคู่แข่งพุ่งเป็น ~${Math.round(calculationResult.competitorMetrics.medianCompetitorRate * 1.25)}฿ ➔ ปรับขึ้นตามกรอบดัชนี ${calculationResult.season === "High" ? "100–110%" : "90–95%"} (เพดาน +15% ของ P3)`}
                   {activeScenario === "compset_sold_out" && "คู่แข่งห้องเต็ม 3/5 แห่ง ➔ เปิดใช้ High Demand Surge Rule ปรับราคาพรีเมียมทันที"}
@@ -560,9 +548,9 @@ export const PagePricing: React.FC = () => {
             )}
           </div>
 
-          {/* Apple/Linear Minimal Hero Spotlight Section (High Contrast, No Text Walls) */}
-          <div className={`rounded-2xl p-6 sm:p-7 transition-all ${
-            isLight ? "bg-gradient-to-br from-slate-50 via-white to-sky-50/40 border border-slate-200 shadow-xs" : "bg-gradient-to-br from-[#0B0F1A] to-[#111827] border border-slate-800 shadow-md"
+          {/* Modern Executive Spotlight Section (Borderless Soft Surface, High Contrast) */}
+          <div className={`rounded-2xl p-6 sm:p-8 transition-all ${
+            isLight ? "bg-slate-100/70" : "bg-[#0c111d]"
           }`}>
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               
@@ -570,47 +558,43 @@ export const PagePricing: React.FC = () => {
               <div className="space-y-3">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className={`px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase ${
-                    isLight ? "bg-sky-700 text-white" : "bg-cyan-950 text-cyan-300 border border-cyan-800"
+                    isLight ? "bg-slate-950 text-white" : "bg-sky-500 text-slate-950 font-black"
                   }`}>
                     {calculationResult.season} Season • {calculationResult.isSpecialDay ? "วันพิเศษพีค" : calculationResult.isWeekend ? "วันสุดสัปดาห์" : "วันธรรมดามาตรฐาน"}
                   </span>
-                  <span className={`text-xs font-bold ${isLight ? "text-slate-800" : "text-slate-300"}`}>
+                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
                     ห้องฐานหลัก (Anchor Tier 1): Deluxe Room Twin Bed
                   </span>
                 </div>
 
                 <div className="flex items-baseline space-x-3">
-                  <span className={`text-4xl sm:text-5xl font-extrabold tracking-tight font-mono ${
-                    isLight ? "text-slate-950" : "text-white"
-                  }`}>
+                  <span className="text-4xl sm:text-5xl font-black tracking-tight font-mono text-slate-950 dark:text-white">
                     {formatPrice(currentActiveRates[0])}
                   </span>
-                  <span className={`text-base sm:text-lg font-bold ${isLight ? "text-slate-700" : "text-slate-300"}`}>
+                  <span className="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-200">
                     บาท / คืน
                   </span>
-                  <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
-                    isLight ? "bg-emerald-100 text-emerald-950 border border-emerald-300" : "bg-emerald-950/80 text-emerald-300 border border-emerald-700"
-                  }`}>
+                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-2xs">
                     Net Rate รวมภาษีแล้ว
                   </span>
                 </div>
 
-                {/* 3 High-Contrast Scannable Summary Badges (Replaces Wall of Text) */}
-                <div className="flex flex-wrap items-center gap-2 pt-0.5">
-                  <div className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center space-x-1.5 ${
-                    isLight ? "bg-white text-slate-900 border border-slate-200 shadow-2xs" : "bg-slate-800 text-slate-100"
+                {/* 3 High-Contrast Scannable Summary Badges */}
+                <div className="flex flex-wrap items-center gap-2 pt-1">
+                  <div className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center space-x-1.5 ${
+                    isLight ? "bg-white text-slate-950 shadow-2xs" : "bg-slate-800 text-slate-100"
                   }`}>
-                    <span className="text-sky-700 dark:text-cyan-400">🎯 ดัชนีตลาด:</span>
+                    <span className="text-sky-700 dark:text-sky-400">🎯 ดัชนีตลาด:</span>
                     <span>{calculationResult.competitorMetrics.competitorIndex.toFixed(0)}% (เป้าหมาย {calculationResult.competitorMetrics.targetIndexRange}%)</span>
                   </div>
-                  <div className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center space-x-1.5 ${
-                    isLight ? "bg-white text-slate-900 border border-slate-200 shadow-2xs" : "bg-slate-800 text-slate-100"
+                  <div className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center space-x-1.5 ${
+                    isLight ? "bg-white text-slate-950 shadow-2xs" : "bg-slate-800 text-slate-100"
                   }`}>
                     <span className="text-emerald-700 dark:text-emerald-400">🛡️ Floor ปลอดภัย:</span>
                     <span>{formatPrice(calculationResult.finalRatesByTier[0].priceFloor)}฿</span>
                   </div>
-                  <div className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center space-x-1.5 ${
-                    isLight ? "bg-white text-slate-900 border border-slate-200 shadow-2xs" : "bg-slate-800 text-slate-100"
+                  <div className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center space-x-1.5 ${
+                    isLight ? "bg-white text-slate-950 shadow-2xs" : "bg-slate-800 text-slate-100"
                   }`}>
                     <span className="text-purple-700 dark:text-purple-400">🏨 มัธยฐานคู่แข่ง:</span>
                     <span>{formatPrice(calculationResult.competitorMetrics.medianCompetitorRate)}฿</span>
@@ -620,13 +604,13 @@ export const PagePricing: React.FC = () => {
 
               {/* Right: Visual Competitive Index Gauge Bar (High Contrast) */}
               <div className={`p-4 rounded-xl min-w-[280px] lg:min-w-[320px] shrink-0 space-y-3 ${
-                isLight ? "bg-white border border-slate-300 shadow-xs" : "bg-[#070A12]/90 border border-slate-700 shadow-sm"
+                isLight ? "bg-white shadow-2xs" : "bg-[#111827]"
               }`}>
                 <div className="flex items-center justify-between text-xs">
-                  <span className={`font-bold ${isLight ? "text-slate-900" : "text-slate-200"}`}>
+                  <span className="font-bold text-slate-950 dark:text-slate-100">
                     ดัชนีเปรียบเทียบตลาด (Price Index)
                   </span>
-                  <span className="font-extrabold text-emerald-700 dark:text-emerald-400 font-mono text-sm">
+                  <span className="font-black text-emerald-700 dark:text-emerald-400 font-mono text-sm">
                     {calculationResult.competitorMetrics.competitorIndex.toFixed(1)}%
                   </span>
                 </div>
@@ -636,33 +620,29 @@ export const PagePricing: React.FC = () => {
                   <div className={`w-full h-2.5 rounded-full overflow-hidden relative ${
                     isLight ? "bg-slate-200" : "bg-slate-800"
                   }`}>
-                    {/* Target Zone Highlight */}
                     <div 
                       className="absolute top-0 bottom-0 bg-emerald-200 dark:bg-emerald-950/80 rounded-full"
                       style={{ left: "85%", width: "15%" }}
                     />
-                    {/* Active Progress Fill */}
                     <div 
                       className="h-full bg-gradient-to-r from-sky-600 to-emerald-600 rounded-full transition-all duration-500"
                       style={{ width: `${Math.min(100, Math.max(10, calculationResult.competitorMetrics.competitorIndex))}%` }}
                     />
                   </div>
-                  <div className={`flex justify-between text-[11px] font-bold ${
-                    isLight ? "text-slate-700" : "text-slate-400"
-                  }`}>
+                  <div className="flex justify-between text-[11px] font-bold text-slate-700 dark:text-slate-400">
                     <span>ถูกกว่าคู่แข่ง</span>
                     <span>เป้าหมาย {calculationResult.competitorMetrics.targetIndexRange}%</span>
                     <span>แพงกว่าคู่แข่ง</span>
                   </div>
                 </div>
 
-                {/* Key Snapshot Pills */}
+                {/* Key Snapshot */}
                 <div className={`pt-2 border-t flex items-center justify-between text-xs font-sans ${
-                  isLight ? "border-slate-200 text-slate-800" : "border-slate-800 text-slate-300"
+                  isLight ? "border-slate-100 text-slate-800" : "border-slate-800 text-slate-300"
                 }`}>
                   <div>
                     <span className="text-slate-700 dark:text-slate-400 font-medium">คู่แข่งมัธยฐาน: </span>
-                    <strong className="text-slate-950 dark:text-slate-100 font-mono font-bold">
+                    <strong className="text-slate-950 dark:text-white font-mono font-bold">
                       {formatPrice(calculationResult.competitorMetrics.medianCompetitorRate)} ฿
                     </strong>
                   </div>
@@ -679,19 +659,17 @@ export const PagePricing: React.FC = () => {
             </div>
           </div>
 
-          {/* Main Commercial Workbench: Left Room Matrix + Right Commercial Rationale */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* Main Commercial Workbench: Left Room Matrix + Right Commercial Rationale (Zero Border Boxes) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
-            {/* Left: Clean Minimalist Room Tier Ladder (Linear Style, Zero Bordered Cells) (lg:col-span-8) */}
-            <div className={`lg:col-span-8 rounded-2xl p-5 sm:p-6 transition-all ${
-              isLight ? "bg-white border border-slate-100 shadow-xs" : "bg-[#0B0F1A] border border-slate-800/40 shadow-sm"
-            }`}>
-              <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800/60 mb-2">
+            {/* Left: Clean Minimalist Room Tier Ladder (Open Layout, lg:col-span-7) */}
+            <div className="lg:col-span-7 space-y-3">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-200/80 dark:border-slate-800">
                 <div>
-                  <h3 className={`font-bold text-base ${isLight ? "text-slate-900" : "text-slate-100"}`}>
+                  <h3 className="font-black text-lg text-slate-950 dark:text-white">
                     บันไดราคาห้องพัก 8 ระดับ (Room Escalation Ladder)
                   </h3>
-                  <p className={`text-xs font-sans mt-0.5 ${isLight ? "text-slate-700 font-medium" : "text-slate-300"}`}>
+                  <p className="text-xs font-sans mt-0.5 text-slate-700 dark:text-slate-300 font-medium">
                     ประจำวันที่ {currentInspectionDate} • ปรับราคาขึ้นตามความพรีเมียมของขนาดห้องและวิว
                   </p>
                 </div>
@@ -699,15 +677,15 @@ export const PagePricing: React.FC = () => {
                 {Object.keys(manualOverrides).length > 0 && (
                   <button
                     onClick={() => setManualOverrides({})}
-                    className="px-3 py-1 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-bold transition-all"
+                    className="px-3 py-1 rounded-full bg-rose-100 hover:bg-rose-200 text-rose-900 text-xs font-bold transition-all"
                   >
                     รีเซ็ตค่าที่ปรับเอง ({Object.keys(manualOverrides).length})
                   </button>
                 )}
               </div>
 
-              {/* Clean Minimalist List (No vertical borders, spacious, Apple-like) */}
-              <div className="divide-y divide-slate-100 dark:divide-slate-800/50">
+              {/* Clean Minimalist List (No vertical borders, spacious row hover) */}
+              <div className="divide-y divide-slate-100 dark:divide-slate-800/60">
                 {calculationResult.finalRatesByTier.map((t, idx) => {
                   const isInspected = inspectingTier === t.tier;
                   const currentPrice = currentActiveRates[idx];
@@ -720,46 +698,40 @@ export const PagePricing: React.FC = () => {
                       className={`py-3.5 px-3 rounded-xl cursor-pointer transition-all flex items-center justify-between gap-3 ${
                         isInspected
                           ? isLight 
-                            ? "bg-sky-50/80 shadow-2xs border border-sky-200/60" 
-                            : "bg-[#162035]/70 shadow-xs"
+                            ? "bg-sky-50/90 shadow-2xs" 
+                            : "bg-[#162035]/80 shadow-xs"
                           : isLight 
-                            ? "hover:bg-slate-50/80" 
+                            ? "hover:bg-slate-50" 
                             : "hover:bg-[#101726]/60"
                       }`}
                     >
                       {/* Left Room Info */}
                       <div className="flex items-center space-x-3 min-w-0">
-                        <span className={`px-2.5 py-1 rounded-md text-xs font-bold shrink-0 font-mono ${
+                        <span className={`px-2.5 py-1 rounded-lg text-xs font-bold shrink-0 font-mono ${
                           t.tier === 1 
-                            ? "bg-sky-100 text-sky-900 dark:bg-sky-950 dark:text-sky-300 border border-sky-300/60"
-                            : isLight ? "bg-slate-100 text-slate-900 border border-slate-300/60" : "bg-slate-800 text-slate-300"
+                            ? "bg-sky-100 text-sky-950 dark:bg-sky-950 dark:text-sky-300"
+                            : isLight ? "bg-slate-100 text-slate-950" : "bg-slate-800 text-slate-200"
                         }`}>
                           T{t.tier}
                         </span>
 
                         <div className="min-w-0">
                           <div className="flex items-center space-x-2">
-                            <span className={`font-bold text-sm truncate ${
-                              isLight ? "text-slate-950" : "text-slate-100"
-                            }`}>
+                            <span className="font-black text-sm truncate text-slate-950 dark:text-white">
                               {t.roomName}
                             </span>
                             {hasOverride && (
-                              <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-950 dark:text-amber-300">
+                              <span className="px-2 py-0.5 rounded text-[10px] font-black bg-amber-100 text-amber-950 dark:bg-amber-950 dark:text-amber-300">
                                 RM Override
                               </span>
                             )}
                           </div>
-                          <div className={`text-xs font-sans mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 ${
-                            isLight ? "text-slate-700 font-medium" : "text-slate-300"
-                          }`}>
+                          <div className="text-xs font-sans mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-slate-700 dark:text-slate-300 font-semibold">
                             <span>{t.rooms} ห้องในระบบ</span>
                             <span className="text-slate-400">•</span>
                             <span>สัดส่วน +{Math.round((t.stepMultiplier - 1) * 100)}%</span>
                             <span className="text-slate-400">•</span>
-                            <span className={`px-1.5 py-0.2 rounded font-mono font-bold text-[11px] ${
-                              isLight ? "bg-slate-100 text-slate-800 border border-slate-200" : "bg-slate-800 text-slate-300"
-                            }`}>
+                            <span className="font-mono text-slate-900 dark:text-slate-200 font-bold">
                               Floor: {t.priceFloor}฿
                             </span>
                           </div>
@@ -769,16 +741,16 @@ export const PagePricing: React.FC = () => {
                       {/* Right Price Display & Edit Button */}
                       <div className="flex items-center space-x-3 sm:space-x-4 shrink-0">
                         <div className="text-right">
-                          <div className={`text-base sm:text-lg font-bold font-mono ${
+                          <div className={`text-base sm:text-lg font-black font-mono ${
                             hasOverride 
                               ? "text-amber-600 dark:text-amber-400" 
-                              : isLight ? "text-slate-950" : "text-white"
+                              : "text-slate-950 dark:text-white"
                           }`}>
                             {formatPrice(currentPrice)}
-                            <span className={`text-xs font-bold ml-1 ${isLight ? "text-slate-700" : "text-slate-300"}`}>฿</span>
+                            <span className="text-xs font-bold text-slate-800 dark:text-slate-200 ml-1">฿</span>
                           </div>
                           {hasOverride && (
-                            <div className={`text-[11px] line-through font-mono ${isLight ? "text-slate-600" : "text-slate-400"}`}>
+                            <div className="text-[11px] line-through font-mono text-slate-600 dark:text-slate-400">
                               ระบบแนะ {formatPrice(t.suggestedRate)}฿
                             </div>
                           )}
@@ -791,7 +763,7 @@ export const PagePricing: React.FC = () => {
                           }}
                           className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
                             isLight 
-                              ? "bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-300" 
+                              ? "bg-slate-100 hover:bg-slate-200 text-slate-950" 
                               : "bg-slate-800 hover:bg-slate-700 text-slate-200"
                           }`}
                         >
@@ -804,139 +776,151 @@ export const PagePricing: React.FC = () => {
               </div>
             </div>
 
-            {/* Right: Executive Commercial Rationale (Soft Surface, Borderless) (lg:col-span-4) */}
-            <div className={`lg:col-span-4 rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all ${
-              isLight ? "bg-slate-50/80 border border-slate-200 shadow-xs" : "bg-[#0B0F1A] border border-slate-800/40 shadow-sm"
+            {/* Right: Executive Commercial Rationale (Soft Natural Canvas, ZERO Nested Border Boxes, lg:col-span-5) */}
+            <div className={`lg:col-span-5 rounded-2xl p-6 transition-all ${
+              isLight ? "bg-slate-100/70" : "bg-[#0c111d]"
             }`}>
-              <div>
-                <div className="flex items-center justify-between pb-3 border-b border-slate-200/80 dark:border-slate-800/60 mb-4">
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-                    <h3 className={`font-bold text-sm sm:text-base ${isLight ? "text-slate-950" : "text-slate-100"}`}>
-                      สรุปเหตุผลเชิงกลยุทธ์
-                    </h3>
-                  </div>
-                  <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
-                    isLight ? "bg-sky-100 text-sky-900 border border-sky-300" : "bg-cyan-950 text-cyan-300"
-                  }`}>
-                    ห้อง Tier {inspectedRoom.tier}
-                  </span>
+              
+              {/* Header */}
+              <div className="flex items-center justify-between pb-4 border-b border-slate-200/80 dark:border-slate-800 mb-5">
+                <div className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+                  <h3 className="font-black text-base text-slate-950 dark:text-white">
+                    สรุปเหตุผลเชิงกลยุทธ์
+                  </h3>
                 </div>
+                <span className="px-3 py-1 rounded-full text-xs font-bold bg-sky-600 text-white shadow-2xs">
+                  ห้อง Tier {inspectedRoom.tier}
+                </span>
+              </div>
 
-                {/* Inspected Room Mini Badge */}
-                <div className={`p-3.5 rounded-xl mb-4 flex items-center justify-between ${
-                  isLight ? "bg-white border border-slate-200 shadow-2xs" : "bg-[#070A12] border border-slate-800/40"
-                }`}>
-                  <div>
-                    <div className="font-bold text-sm text-slate-950 dark:text-slate-100">{inspectedRoom.roomName}</div>
-                    <div className={`text-xs mt-0.5 font-medium ${isLight ? "text-slate-700" : "text-slate-300"}`}>
-                      Floor ปลอดภัย: <span className="font-bold font-mono text-slate-900 dark:text-slate-100">{formatPrice(inspectedRoom.priceFloor)} บาท</span>
-                    </div>
+              {/* Inspected Room Focus Display (Clean, High Contrast, No Border Box) */}
+              <div className="pb-5 mb-5 border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between">
+                <div>
+                  <div className="text-lg font-black text-slate-950 dark:text-white">
+                    {inspectedRoom.roomName}
                   </div>
-                  <div className="text-right">
-                    <div className="text-xl font-bold font-mono text-sky-700 dark:text-cyan-400">
-                      {formatPrice(inspectedRoom.suggestedRate)}
-                    </div>
-                    <span className={`text-[11px] font-bold font-sans ${isLight ? "text-slate-700" : "text-slate-300"}`}>บาท/คืน</span>
+                  <div className="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1">
+                    Floor ปลอดภัย: <span className="font-black font-mono text-slate-950 dark:text-white">{formatPrice(inspectedRoom.priceFloor)} บาท</span>
                   </div>
                 </div>
+                <div className="text-right">
+                  <div className="text-2xl sm:text-3xl font-black font-mono text-sky-700 dark:text-sky-400">
+                    {formatPrice(inspectedRoom.suggestedRate)}
+                  </div>
+                  <span className="text-xs font-bold font-sans text-slate-800 dark:text-slate-200">บาท / คืน</span>
+                </div>
+              </div>
 
-                {/* 4 Clean Executive Strategic Cards (No Text Wall, High Contrast) */}
-                <div className="space-y-2.5 font-sans text-xs">
-                  <div className={`p-3 rounded-xl flex items-center justify-between ${isLight ? "bg-white border border-slate-200 shadow-2xs" : "bg-[#070A12]/80 border border-slate-800"}`}>
-                    <div className="space-y-0.5 pr-2">
-                      <div className="font-bold text-slate-950 dark:text-slate-100 flex items-center space-x-1.5">
-                        <span className="w-2 h-2 rounded-full bg-sky-500 shrink-0"></span>
-                        <span>1. ปัจจัยฤดูกาล (P1)</span>
-                      </div>
-                      <div className="text-slate-700 dark:text-slate-300 font-medium text-[11px]">
-                        ราคาฐาน 963฿ (A1) • เน้นสร้างยอดจอง
-                      </div>
+              {/* 4 Clean Executive Strategic Timeline Items (ZERO Border Boxes, High Contrast) */}
+              <div className="space-y-4 font-sans">
+                
+                {/* Item 1: Seasonality */}
+                <div className="pb-3 border-b border-slate-200/60 dark:border-slate-800/60">
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-center space-x-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-sky-500 shrink-0"></span>
+                      <span className="font-black text-xs text-slate-950 dark:text-white">
+                        1. ปัจจัยฤดูกาล (P1)
+                      </span>
                     </div>
-                    <span className={`px-2 py-1 rounded text-[11px] font-bold shrink-0 ${
+                    <span className={`px-2 py-0.5 rounded text-[11px] font-black ${
                       calculationResult.season === "High"
-                        ? "bg-amber-100 text-amber-900 border border-amber-300"
-                        : "bg-blue-100 text-blue-900 border border-blue-300"
+                        ? "bg-amber-100 text-amber-950 border border-amber-300"
+                        : "bg-blue-100 text-blue-950 border border-blue-300"
                     }`}>
                       {calculationResult.season === "High" ? "High Season" : "Low Season"}
                     </span>
                   </div>
+                  <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 leading-relaxed pl-4.5">
+                    ราคาฐาน 963฿ (ตามประวัติ A1) • ปรับสมดุลความคุ้มค่าเพื่อสร้างยอดจอง
+                  </p>
+                </div>
 
-                  <div className={`p-3 rounded-xl flex items-center justify-between ${isLight ? "bg-white border border-slate-200 shadow-2xs" : "bg-[#070A12]/80 border border-slate-800"}`}>
-                    <div className="space-y-0.5 pr-2">
-                      <div className="font-bold text-slate-950 dark:text-slate-100 flex items-center space-x-1.5">
-                        <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
-                        <span>2. ความต้องการวันหยุด (P4)</span>
-                      </div>
-                      <div className="text-slate-700 dark:text-slate-300 font-medium text-[11px]">
-                        {calculationResult.isSpecialDay
-                          ? "ปรับราคาเทศกาลพีคตามกรอบสูงสุด"
-                          : calculationResult.isWeekend
-                          ? "ปรับเพิ่มจับดีมานด์นักท่องเที่ยวสัปดาห์นี้"
-                          : "ราคามาตรฐานวันธรรมดา ไม่มีการชาร์จเพิ่ม"}
-                      </div>
+                {/* Item 2: Weekend */}
+                <div className="pb-3 border-b border-slate-200/60 dark:border-slate-800/60">
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-center space-x-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0"></span>
+                      <span className="font-black text-xs text-slate-950 dark:text-white">
+                        2. ความต้องการวันหยุด (P4)
+                      </span>
                     </div>
-                    <span className={`px-2 py-1 rounded text-[11px] font-bold shrink-0 ${
+                    <span className={`px-2 py-0.5 rounded text-[11px] font-black ${
                       calculationResult.isSpecialDay
-                        ? "bg-purple-100 text-purple-900 border border-purple-300"
+                        ? "bg-purple-100 text-purple-950 border border-purple-300"
                         : calculationResult.isWeekend
-                        ? "bg-emerald-100 text-emerald-900 border border-emerald-300"
-                        : "bg-slate-100 text-slate-800 border border-slate-300"
+                        ? "bg-emerald-100 text-emerald-950 border border-emerald-300"
+                        : "bg-slate-200 text-slate-950"
                     }`}>
                       {calculationResult.isSpecialDay ? "+40% Special" : calculationResult.isWeekend ? (calculationResult.season === 'High' ? "+15% Weekend" : "+5% Weekend") : "0% Weekday"}
                     </span>
                   </div>
+                  <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 leading-relaxed pl-4.5">
+                    {calculationResult.isSpecialDay
+                      ? "ช่วงเทศกาลพีค ปรับราคาขึ้นตามเพดานสูงสุดเพื่อดึงดูดรายได้"
+                      : calculationResult.isWeekend
+                      ? "คืนวันศุกร์-เสาร์ มีนักท่องเที่ยวสูงกว่าวันธรรมดา จึงเพิ่มราคา"
+                      : "วันธรรมดามาตรฐาน ไม่มีการปรับเพิ่มวันหยุด เพื่อรักษาราคาแข่งขันได้"}
+                  </p>
+                </div>
 
-                  <div className={`p-3 rounded-xl flex items-center justify-between ${isLight ? "bg-white border border-slate-200 shadow-2xs" : "bg-[#070A12]/80 border border-slate-800"}`}>
-                    <div className="space-y-0.5 pr-2">
-                      <div className="font-bold text-slate-950 dark:text-slate-100 flex items-center space-x-1.5">
-                        <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0"></span>
-                        <span>3. ดัชนีแข่งขันตลาด (P5)</span>
-                      </div>
-                      <div className="text-slate-700 dark:text-slate-300 font-medium text-[11px]">
-                        มัธยฐานคู่แข่ง: {formatPrice(calculationResult.competitorMetrics.medianCompetitorRate)}฿ (5 โรงแรม)
-                      </div>
+                {/* Item 3: Competitors */}
+                <div className="pb-3 border-b border-slate-200/60 dark:border-slate-800/60">
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-center space-x-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-indigo-500 shrink-0"></span>
+                      <span className="font-black text-xs text-slate-950 dark:text-white">
+                        3. ดัชนีแข่งขันตลาด (P5)
+                      </span>
                     </div>
-                    <span className="px-2 py-1 rounded text-[11px] font-bold bg-sky-100 text-sky-900 border border-sky-300 shrink-0">
+                    <span className="px-2 py-0.5 rounded text-[11px] font-black bg-sky-100 text-sky-950 border border-sky-300">
                       Index {calculationResult.competitorMetrics.competitorIndex.toFixed(0)}%
                     </span>
                   </div>
+                  <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 leading-relaxed pl-4.5">
+                    มัธยฐานคู่แข่ง: {formatPrice(calculationResult.competitorMetrics.medianCompetitorRate)}฿ (Compset 5 โรงแรมในหาดจอมเทียน)
+                  </p>
+                </div>
 
-                  <div className={`p-3 rounded-xl flex items-center justify-between ${isLight ? "bg-white border border-slate-200 shadow-2xs" : "bg-[#070A12]/80 border border-slate-800"}`}>
-                    <div className="space-y-0.5 pr-2">
-                      <div className="font-bold text-slate-950 dark:text-slate-100 flex items-center space-x-1.5">
-                        <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0"></span>
-                        <span>4. บันไดราคาห้องพัก (P6)</span>
-                      </div>
-                      <div className="text-slate-700 dark:text-slate-300 font-medium text-[11px]">
-                        Tier 1 ➔ Tier {inspectedRoom.tier} ({inspectedRoom.rooms} ห้อง)
-                      </div>
+                {/* Item 4: Tier Escalation */}
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-center space-x-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-rose-500 shrink-0"></span>
+                      <span className="font-black text-xs text-slate-950 dark:text-white">
+                        4. บันไดราคาห้องพัก (P6)
+                      </span>
                     </div>
-                    <span className="px-2 py-1 rounded text-[11px] font-bold bg-slate-100 text-slate-900 border border-slate-300 font-mono shrink-0">
+                    <span className="px-2 py-0.5 rounded text-[11px] font-black bg-slate-200 text-slate-950 font-mono">
                       +{Math.round((inspectedRoom.stepMultiplier - 1) * 100)}%
                     </span>
                   </div>
+                  <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 leading-relaxed pl-4.5">
+                    อัตราสัดส่วน Tier 1 ➔ Tier {inspectedRoom.tier} ({inspectedRoom.rooms} ห้องในระบบ) คำนวณตามขนาดและวิว
+                  </p>
                 </div>
+
               </div>
 
               {/* Bottom Switch to Auditor */}
-              <div className="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-800/60 text-center">
+              <div className="mt-5 pt-4 border-t border-slate-200/80 dark:border-slate-800 text-center">
                 <button
                   onClick={() => setViewPerspective("admin")}
-                  className={`text-xs font-bold transition-all flex items-center justify-center space-x-1 mx-auto ${
-                    isLight ? "text-purple-700 hover:text-purple-900" : "text-purple-400 hover:text-purple-200"
-                  }`}
+                  className="text-xs font-bold transition-all flex items-center justify-center space-x-1 mx-auto text-purple-700 hover:text-purple-900 dark:text-purple-400"
                 >
                   <span>ต้องการตรวจสอบสมการคณิตศาสตร์? ไปที่ Admin Console</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
+
             </div>
 
           </div>
 
         </div>
       )}
+
 
       {/* ========================================================================= */}
       {/* PERSPECTIVE 2: ADMIN CONSOLE & MATHEMATICAL RULE AUDITOR                   */}
