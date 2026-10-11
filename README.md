@@ -21,10 +21,12 @@
 - **Layout Drift Detection & Working Live Upload:** อัปโหลดไฟล์รูปภาพหรือ PDF จริงแล้วระบบจะทำการวิเคราะห์ แสดงผลพรีวิว สกัดตัวเลข และสร้าง Raw Stream ให้ทันที
 - **Data Export:** ส่งออกข้อมูลโครงสร้างมาตรฐานเดียวกันทั้งในรูปแบบ **JSON** และ **Markdown**
 
-### 2. หน้า [2] ระบบคำนวณราคาห้องพัก (Dynamic Pricing Terminal)
+### 2. หน้า [2] ระบบกำหนดและเสนอราคาห้องพัก (Dynamic Pricing Terminal)
 - **Dual Perspectives (โหมดผู้ใช้ทั่วไป vs Admin Console):**
   - **โหมดผู้ใช้ทั่วไป (Commercial View):** สะอาดตา สบายตา สรุปเหตุผลการตั้งราคาด้วยภาษาธุรกิจที่เข้าใจง่าย ไม่รบกวนด้วยสมการคณิตศาสตร์
   - **Admin Console & Engine Auditor:** เจาะลึก P0–P8 Rule Execution Trace, ตรวจสอบสมการคณิตศาสตร์, แผงพารามิเตอร์, และบันทึก Audit Trail
+- **🔮 แบบจำลองความไวตลาด (What-If Market Sensitivity Sandbox):** จำลองสถานการณ์ตลาดฉับพลัน (สงครามราคาคู่แข่ง -20%, อุปสงค์พุ่งสูง +25%, คู่แข่งห้องเต็ม 3/5 แห่ง) และดูการตอบสนองอัตโนมัติของ Playbook Engine แบบ Real-time
+- **📥 ส่งออก PMS / SiteMinder CSV:** ส่งออกตารางราคาห้องพักประจำวันในรูปแบบมาตรฐาน PMS (.csv) สำหรับนำเข้าสู่ระบบจัดการโรงแรมได้ในคลิกเดียว
 - **Date Baseline Context:** อธิบายชัดเจนว่าทำไม 15 กันยายน 2027 จึงเป็น Mid-Month Weekday Baseline พร้อมปุ่มลัดเลือกวันและ Date Picker รายวัน 1–30 กันยายน อย่างอิสระ
 - **8-Tier Room Ladder Matrix:** คำนวณบันไดราคาห้องพักทั้ง 8 ระดับ (ตั้งแต่ Deluxe Twin จนถึง Presidential / Honeymoon Suite)
 - **Interactive Override & Hard-Block Validation:** RM สามารถปรับราคาเองได้ โดยระบบจะบังคับใช้กฎ P7 (Floor 750 THB / 85% Hard-block) และกฎ P6/P8 (ห้ามตั้งราคาผิดลำดับขั้นบันได) ทันทีแบบ Real-time
@@ -41,7 +43,8 @@
 
 - **Frontend & Server:** Next.js 16.3.8 (App Router, Turbopack, React 19)
 - **Styling & Design System:** TailwindCSS, Lucide Icons, Modern Light/Dark Mode Support
-- **Data & Calculations:** Python (Data Analysis, Feature Extraction, Precomputations), TypeScript (Dynamic Rule Engine & Validation)
+- **Testing & Verification:** TypeScript Native Test Runner (`tsx` + Node `node:test`), 20 Passing Automated Unit & Property Tests
+- **Data & Calculations:** Python (Data Analysis, Scraper Pipeline, Precomputations), TypeScript (Dynamic Rule Engine & Validation)
 - **Data Formats:** JSON, Markdown, CSV, Normalized Extranet Datasets
 
 ---
@@ -50,7 +53,7 @@
 
 ### 1. Clone repository
 ```bash
-git clone https://github.com/<YOUR_USERNAME>/hotelplus-rate-intelligence.git
+git clone https://github.com/ImM0rTaLBB/hotelplus-rate-intelligence.git
 cd hotelplus-rate-intelligence/webapp
 ```
 
@@ -59,13 +62,18 @@ cd hotelplus-rate-intelligence/webapp
 npm install
 ```
 
-### 3. เริ่มต้น Local Dev Server
+### 3. รันชุดทดสอบความถูกต้องของกฎและสมการ (Automated Test Suite)
+```bash
+npm test        # 20 tests passed in ~25ms (ครอบคลุม P0–P8, Calendar UTC, Overrides)
+```
+
+### 4. เริ่มต้น Local Dev Server
 ```bash
 npm run dev
 ```
 เปิดเบราว์เซอร์ที่ [http://localhost:3000](http://localhost:3000)
 
-### 4. ตรวจสอบคุณภาพโค้ด (Linting & Production Build)
+### 5. ตรวจสอบคุณภาพโค้ด (Linting & Production Build)
 ```bash
 npm run lint    # 0 errors, 0 warnings
 npm run build   # Production compile passed

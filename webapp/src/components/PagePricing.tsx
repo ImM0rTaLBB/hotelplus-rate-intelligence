@@ -6,7 +6,7 @@ import {
   History, AlertTriangle, TrendingUp,
   Calendar, CheckCircle2, Sliders, Settings,
   HelpCircle, Info, ChevronRight, UserCheck,
-  Lock
+  Lock, Download, Sparkles
 } from "lucide-react";
 import { 
   calculateRatesForDate, validatePriceOverride, RateCalculationResult 
@@ -126,6 +126,55 @@ export const PagePricing: React.FC = () => {
     ]);
 
     setEditingTier(null);
+  };
+
+  // What-If Market Scenario Simulation State
+  type MarketScenario = "normal" | "price_war" | "demand_surge" | "compset_sold_out";
+  const [activeScenario, setActiveScenario] = useState<MarketScenario>("normal");
+
+  const handleExportPMSCsv = () => {
+    const headers = [
+      "Date",
+      "Season",
+      "Day_Type",
+      "Tier",
+      "Room_Name",
+      "Rooms_Count",
+      "Base_Rate_THB",
+      "Active_Rate_THB",
+      "Price_Floor_THB",
+      "Compset_Median_THB",
+      "Price_Index",
+      "Status"
+    ];
+    const rows = calculationResult.finalRatesByTier.map(t => {
+      const activePrice = manualOverrides[t.tier] !== undefined ? manualOverrides[t.tier] : t.suggestedRate;
+      const status = manualOverrides[t.tier] !== undefined ? "MANUAL_OVERRIDE" : "SYSTEM_SUGGESTED";
+      return [
+        currentInspectionDate,
+        calculationResult.season,
+        calculationResult.isWeekend ? "WEEKEND" : "WEEKDAY",
+        t.tier,
+        `"${t.roomName}"`,
+        t.rooms,
+        t.suggestedRate,
+        activePrice,
+        t.priceFloor,
+        calculationResult.competitorMetrics.medianCompetitorRate,
+        calculationResult.competitorMetrics.competitorIndex.toFixed(1),
+        status
+      ].join(",");
+    });
+    const csvContent = "\uFEFF" + [headers.join(","), ...rows].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", `hotelplus_pms_rates_${currentInspectionDate}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   const inspectedRoom = calculationResult.finalRatesByTier.find(t => t.tier === (inspectingTier || 1)) || calculationResult.finalRatesByTier[0];
@@ -346,6 +395,18 @@ export const PagePricing: React.FC = () => {
             <TrendingUp className="w-3.5 h-3.5" />
             <span>{showVisualizer ? "ซ่อนกราฟแนวโน้ม" : "ดูกราฟแนวโน้ม"}</span>
           </button>
+
+          {/* Export PMS / SiteMinder CSV */}
+          <button
+            onClick={handleExportPMSCsv}
+            className={`px-3 py-1 rounded-lg text-xs font-bold border transition-all flex items-center space-x-1 shadow-2xs ${
+              isLight ? "bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border-emerald-300" : "bg-emerald-950/70 hover:bg-emerald-900 text-emerald-300 border-emerald-700"
+            }`}
+            title="ดาวน์โหลดตารางราคาเพื่อนำเข้า Opera PMS / SiteMinder"
+          >
+            <Download className="w-3.5 h-3.5 text-emerald-600" />
+            <span>ส่งออก PMS (.csv)</span>
+          </button>
         </div>
 
       </div>
@@ -412,6 +473,99 @@ export const PagePricing: React.FC = () => {
       {/* ========================================================================= */}
       {viewPerspective === "commercial" && (
         <div className="space-y-6">
+
+          {/* Executive What-If Scenario Sandbox */}
+          <div className={`p-4 rounded-xl border transition-all ${
+            activeScenario !== "normal"
+              ? isLight ? "bg-amber-50/70 border-amber-300 shadow-sm" : "bg-amber-950/20 border-amber-700/80 shadow-md"
+              : isLight ? "bg-white border-slate-200 shadow-xs" : "bg-[#0B0F1A] border-[#1E293B]"
+          }`}>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+              <div>
+                <div className="flex items-center space-x-2">
+                  <Sparkles className={`w-4 h-4 ${activeScenario !== "normal" ? "text-amber-600 animate-pulse" : isLight ? "text-sky-600" : "text-cyan-400"}`} />
+                  <span className={`font-bold text-xs sm:text-sm ${isLight ? "text-slate-900" : "text-slate-100"}`}>
+                    🔮 แบบจำลองความไวตลาด (What-If Market Sensitivity Sandbox)
+                  </span>
+                  {activeScenario !== "normal" && (
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500 text-white animate-pulse">
+                      SIMULATION ACTIVE
+                    </span>
+                  )}
+                </div>
+                <p className={`text-xs font-sans mt-0.5 ${isLight ? "text-slate-600" : "text-slate-400"}`}>
+                  ทดสอบการตอบสนองของระบบราคาอัตโนมัติ เมื่อตลาดเกิดการเปลี่ยนแปลงฉับพลันในสถานการณ์จริง
+                </p>
+              </div>
+
+              {/* Scenario Toggles */}
+              <div className="flex flex-wrap items-center gap-1.5 shrink-0">
+                <button
+                  onClick={() => setActiveScenario("normal")}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${
+                    activeScenario === "normal"
+                      ? isLight ? "bg-slate-900 text-white border-slate-900" : "bg-cyan-500 text-black border-cyan-400"
+                      : isLight ? "bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300" : "bg-[#111827] text-slate-400 border-slate-800"
+                  }`}
+                >
+                  สภาวะปกติ (Baseline)
+                </button>
+                <button
+                  onClick={() => setActiveScenario("price_war")}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${
+                    activeScenario === "price_war"
+                      ? "bg-rose-600 text-white border-rose-700 shadow-xs"
+                      : isLight ? "bg-rose-50 text-rose-800 hover:bg-rose-100 border-rose-200" : "bg-rose-950/40 text-rose-300 border-rose-800"
+                  }`}
+                >
+                  📉 สงครามราคา (-20%)
+                </button>
+                <button
+                  onClick={() => setActiveScenario("demand_surge")}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${
+                    activeScenario === "demand_surge"
+                      ? "bg-emerald-600 text-white border-emerald-700 shadow-xs"
+                      : isLight ? "bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border-emerald-200" : "bg-emerald-950/40 text-emerald-300 border-emerald-800"
+                  }`}
+                >
+                  ⚡ อุปสงค์พุ่งสูง (+25%)
+                </button>
+                <button
+                  onClick={() => setActiveScenario("compset_sold_out")}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${
+                    activeScenario === "compset_sold_out"
+                      ? "bg-purple-600 text-white border-purple-700 shadow-xs"
+                      : isLight ? "bg-purple-50 text-purple-800 hover:bg-purple-100 border-purple-200" : "bg-purple-950/40 text-purple-300 border-purple-800"
+                  }`}
+                >
+                  🏨 คู่แข่ง 3 แห่งห้องเต็ม
+                </button>
+              </div>
+            </div>
+
+            {/* Scenario Narrative Explanation */}
+            {activeScenario !== "normal" && (
+              <div className={`mt-3 pt-3 border-t text-xs font-sans space-y-1 ${
+                isLight ? "border-amber-200/80 text-amber-950" : "border-amber-800/60 text-amber-200"
+              }`}>
+                {activeScenario === "price_war" && (
+                  <p>
+                    <strong>กลไกตอบสนองเมื่อเกิดสงครามราคา:</strong> ค่ามัธยฐานคู่แข่งลดลงเหลือ ~{Math.round(calculationResult.competitorMetrics.medianCompetitorRate * 0.8)} บาท ระบบประเมินดัชนีราคาเปรียบเทียบ (Rule P5.2) ปรับลดราคาเพื่อรักษาส่วนแบ่งตลาด โดยระบบมี <em>Hard Safety Floor (Rule P8.1)</em> ล็อคไว้ไม่ให้ราคาลดต่ำกว่า 85% ของ Floor เสมอ
+                  </p>
+                )}
+                {activeScenario === "demand_surge" && (
+                  <p>
+                    <strong>กลไกตอบสนองเมื่อตลาดมีความต้องการสูง:</strong> ค่ามัธยฐานคู่แข่งขยับขึ้นเป็น ~{Math.round(calculationResult.competitorMetrics.medianCompetitorRate * 1.25)} บาท ระบบปรับขึ้นราคาห้องพักขึ้นตามกรอบดัชนี {calculationResult.season === "High" ? "100–110%" : "90–95%"} เพื่อเพิ่ม RevPAR สูงสุด แต่ไม่เกินเพดาน +15% ของราคาฐาน P3
+                  </p>
+                )}
+                {activeScenario === "compset_sold_out" && (
+                  <p>
+                    <strong>กลไกตอบสนองเมื่อคู่แข่งขายห้องเต็ม (Sold Out &gt;= 3 แห่ง):</strong> ระบบเปิดใช้งาน <em>High Demand Surge Rule (P5)</em> ทันทีเนื่องจากผู้เข้าพักในพื้นที่จอมเทียนมีตัวเลือกจำกัด ทำให้โรงแรม H+ สามารถเรียกเก็บราคาพรีเมียมได้สูงสุดตามเพดานที่ได้รับอนุมัติ
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
 
           {/* 4 Commercial Executive KPI Cards (Non-Mathematical, Clean) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
