@@ -15,19 +15,23 @@
 ## 🚀 ฟังก์ชันหลักของระบบ (Core Features)
 
 ### 1. หน้า [1] การนำเข้าและตรวจทานข้อมูล (Data Ingestion & OCR Audit)
-- **Extranet Report Parsing:** สกัด ADR, Conversion Rate, และ Review Score จากรายงาน OTA ชั้นนำ (Booking.com, Agoda, Expedia)
-- **Layout Drift Detection:** ตรวจจับการเปลี่ยนแปลง Layout หรือ DOM ของ OTA Extranet โดยอัตโนมัติ
-- **Human-in-the-loop Editing:** อนุญาตให้ RM แก้ไขตัวเลขที่ค่าความมั่นใจต่ำ (Low Confidence) พร้อมอัปเดตเป็น `MANUAL_VERIFIED`
+- **Extranet Report Parsing (ครบ 6 OTAs):** สกัด ADR, Conversion Rate, Content Score, และ Review Score จากรายงาน OTA ครบทั้ง 6 ช่องทาง: **Booking.com, Agoda, Expedia, Tiket.com, Traveloka, และ Trip.com**
+- **100% Raw OCR Text Stream:** แสดงสตรีมข้อความดิบที่ดึงมาได้ครบ 100% จากเอกสารต้นฉบับทั้ง 2 หน้า พร้อมตัวค้นหาและปุ่มคัดลอก เพื่อให้ผู้ตรวจมั่นใจว่าไม่มีข้อมูลใดตกหล่น
+- **Compset Amenities Scraper Intelligence:** พาร์ทสเครปข้อมูลสิ่งอำนวยความสะดวกโรงแรมคู่แข่ง 5 แห่ง (สระว่ายน้ำ, ระยะห่างจากหาด, คะแนนรีวิว) พร้อมระบบจำลองการสเครปสด (Live Scrape) และให้ RM ปรับแก้ไขได้
+- **Layout Drift Detection & Working Live Upload:** อัปโหลดไฟล์รูปภาพหรือ PDF จริงแล้วระบบจะทำการวิเคราะห์ แสดงผลพรีวิว สกัดตัวเลข และสร้าง Raw Stream ให้ทันที
 - **Data Export:** ส่งออกข้อมูลโครงสร้างมาตรฐานเดียวกันทั้งในรูปแบบ **JSON** และ **Markdown**
 
 ### 2. หน้า [2] ระบบคำนวณราคาห้องพัก (Dynamic Pricing Terminal)
-- **P0–P8 Playbook Engine:** ทำงานตามกฎคำนวณราคา 9 ขั้นตอนอย่างโปร่งใสและตรวจสอบสูตรได้ทุกจุด (Rule Trace Inspector)
+- **Dual Perspectives (โหมดผู้ใช้ทั่วไป vs Admin Console):**
+  - **โหมดผู้ใช้ทั่วไป (Commercial View):** สะอาดตา สบายตา สรุปเหตุผลการตั้งราคาด้วยภาษาธุรกิจที่เข้าใจง่าย ไม่รบกวนด้วยสมการคณิตศาสตร์
+  - **Admin Console & Engine Auditor:** เจาะลึก P0–P8 Rule Execution Trace, ตรวจสอบสมการคณิตศาสตร์, แผงพารามิเตอร์, และบันทึก Audit Trail
+- **Date Baseline Context:** อธิบายชัดเจนว่าทำไม 15 กันยายน 2027 จึงเป็น Mid-Month Weekday Baseline พร้อมปุ่มลัดเลือกวันและ Date Picker รายวัน 1–30 กันยายน อย่างอิสระ
 - **8-Tier Room Ladder Matrix:** คำนวณบันไดราคาห้องพักทั้ง 8 ระดับ (ตั้งแต่ Deluxe Twin จนถึง Presidential / Honeymoon Suite)
 - **Interactive Override & Hard-Block Validation:** RM สามารถปรับราคาเองได้ โดยระบบจะบังคับใช้กฎ P7 (Floor 750 THB / 85% Hard-block) และกฎ P6/P8 (ห้ามตั้งราคาผิดลำดับขั้นบันได) ทันทีแบบ Real-time
 - **Rate Trend Visualizer:** กราฟวิเคราะห์แนวโน้มราคา เปรียบเทียบกรอบราคาตลาด, คู่แข่ง 5 แห่ง, และอัตราเข้าพัก
 
 ### 3. หน้า [3] รายงานผลการประเมินและเฉลยคำตอบ (Assessment Log & Official Proof)
-- **เฉลยข้อ 5:** ตารางราคาเสนอแนะอย่างเป็นทางการสำหรับเดือน **ธันวาคม 2026** (High Season) และ **กันยายน 2027** (Low Season) พร้อมสมการคณิตศาสตร์
+- **เฉลยข้อ 5:** ตารางราคาเสนอแนะอย่างเป็นทางการสำหรับเดือน **ธันวาคม 2026** (High Season) และ **กันยายน 2027** (Low Season) พร้อมสมการคณิตศาสตร์และคำอธิบาย 15 กันยายน
 - **ข้อ 6 พิเศษ:** การวิเคราะห์ข้อขัดแย้งในข้อมูลจริงเชิงประจักษ์ (Empirical Discrepancies) เช่น ปรากฏการณ์ Low Season ADR สูงกว่า High Season และแนวทางแก้ไข
 - **Dual-View Switcher:** รองรับทั้งมุมมอง `[1] สรุปสั้น เข้าใจทันที (Fast Read)` และ `[2] เจาะลึกสมการ & ข้อมูลตรวจสอบ (Detailed)`
 

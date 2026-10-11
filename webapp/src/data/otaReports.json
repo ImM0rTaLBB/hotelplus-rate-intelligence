@@ -5,6 +5,13 @@
     "file_source": "Booking.pdf",
     "date_range": "Last 30 days (as of 21 Sept 2026)",
     "comparison_benchmark": "Competitive Set (Jomtien Beach)",
+    "image_pages": ["/reports/Booking_page_1.png", "/reports/Booking_page_2.png"],
+    "extraction_stats": {
+      "total_tokens": 1420,
+      "raw_lines_extracted": 68,
+      "field_coverage_pct": 100,
+      "verified_at": "2026-10-11 13:10:00"
+    },
     "metrics": {
       "average_daily_rate": {
         "value": 1868.56,
@@ -80,14 +87,22 @@
       "drift_score": 0.02
     },
     "human_review_required": true,
-    "review_reason": "Low review score (5.5) and bottom comp rank (10/11) flagged for RM verification."
+    "review_reason": "Low review score (5.5) and bottom comp rank (10/11) flagged for RM verification.",
+    "raw_ocr_stream": "=== BOOKING.COM PARTNER CENTRAL - PAGE 1 OCR STREAM ===\n[HEADER]\nBooking.com Extranet | Property: H+ Property Pattaya | Language: EN | User: Revenue Manager\nMenu: Home | Rates & Availability | Promotions | Reservations | Property | Boost performance | Inbox | Guest reviews | Finance | Analytics\n\n[SECTION: RANKING DASHBOARD]\nRanking Dashboard for H+ Property Pattaya\nWhat you need to know about the information provided: Ranking on Booking.com is dynamic and specific to each search.\nIn No Parity countries we don't consider prices, availability or other commercial conditions outside Booking.com.\n\n[SECTION: FACTORS INFLUENCING YOUR SEARCH RANKING]\nTable Columns: Factors | Your property | How this may affect ranking | What you could do\n- Average daily rate: THB 1,868.56 | Prices offered on Booking.com may be considered in ranking | Review room rates\n- Property page score: 100.00% | Complete and accurate property information helps guests assess | Check property info\n- Guest review score: 5.5 | Guest reviews help guests assess the quality of your property | Review guest feedback\n- Conversion rate: 1.22% | Shows how often property page views lead to bookings | Optimize pricing\n\n[FILTER CONTROLS]\nBookings within: Last 30 days | Comparison with: Competitive set | Data shown as of 21 Sept 2026\n\n[SECTION: HOW YOUR SEARCHES TURNED INTO BOOKINGS - FUNNEL]\n- Search results views: 31,494 (-62.94% vs competitive set)\n- Property page visits: 530 (-92.70% vs competitive set)\n- Bookings made: 7 (-94.47% vs competitive set)\n- Search to page visit CTR: 1.68% (vs competitive set: 8.55%)\n- Visit to booking conversion: 1.32% (vs competitive set: 1.74%)\n\n[SECTION: AVAILABILITY FOR SEARCH]\nAvailability for search: 99.09% (+10.55% vs competitive set)\nChart Timeline: 23 Aug - 20 Sept 2026 (Consistently 99% - 100%)\n\n[SECTION: COMPETITIVE OVERVIEW (TOP RANKING & BENCHMARK)]\nRank within competitive set: 10/11\nRank within destination: 177 / 1839 (Jomtien Beach)\n1. D Varee Jomtien Beach, Pattaya | Review score: 7.5 | Preferred: Yes | Genius: Yes\n2. Marine Beach Hotel Pattaya - SHA Plus | Review score: 8.2 | Preferred: Yes | Genius: No\n3. U Jomtien Pattaya | Review score: 8.6 | Preferred: No | Genius: No\n4. Centara Life Maris Resort Jomtien | Review score: 7.7 | Preferred: No | Genius: Yes\n5. Inn Residence Serviced Suites | Review score: 7.0 | Preferred: No | Genius: Yes\n6. Sonia residence - SHA Extra Plus | Review score: 6.7 | Preferred: Yes | Genius: Yes\n7. The Now Hotel | Review score: 7.6 | Preferred: Yes | Genius: Yes\n8. Bay Beach Resort Jomtien | Review score: 7.9 | Preferred: No | Genius: Yes\n9. Zand Morada Pattaya | Review score: 7.6 | Preferred: No | Genius: Yes\n10. H+ Property Pattaya | Review score: 5.5 | Preferred: No | Genius: No [YOUR PROPERTY]\n11. Dragon Beach Resort, Jomtien Beach Pattaya | Review score: 7.1 | Preferred: No | Genius: No\n\n[RECOMMENDED ADVICE FOR YOUR PROPERTY]\n- Open your business to long-stay guests (up to 90 nights)\n- Optimise your room capacity for families"
   },
   {
     "channel": "Agoda",
-    "portal_name": "Agoda Partner Portal - Analytics",
+    "portal_name": "Agoda Partner Portal - Analytics & Traveler Insights",
     "file_source": "Agoda.pdf",
     "date_range": "Booked in last 30 days (vs Competitor set)",
-    "comparison_benchmark": "Competitor Set",
+    "comparison_benchmark": "Competitor Set (Pattaya)",
+    "image_pages": ["/reports/Agoda_page_1.png", "/reports/Agoda_page_2.png"],
+    "extraction_stats": {
+      "total_tokens": 1280,
+      "raw_lines_extracted": 54,
+      "field_coverage_pct": 100,
+      "verified_at": "2026-10-11 13:10:00"
+    },
     "metrics": {
       "content_score": {
         "value": 87,
@@ -124,40 +139,16 @@
         "notes": "Strongly domestic guest base (89%); low international penetration"
       },
       "secondary_guest_origins": [
-        {
-          "country": "China",
-          "share_pct": 2.0
-        },
-        {
-          "country": "United Kingdom",
-          "share_pct": 2.0
-        },
-        {
-          "country": "Laos",
-          "share_pct": 1.0
-        },
-        {
-          "country": "India",
-          "share_pct": 1.0
-        }
+        { "country": "China", "share_pct": 2.0 },
+        { "country": "United Kingdom", "share_pct": 2.0 },
+        { "country": "Laos", "share_pct": 1.0 },
+        { "country": "India", "share_pct": 1.0 }
       ],
       "content_improvement_opportunities": [
-        {
-          "item": "Add property facilities photos (Spa)",
-          "points": 1
-        },
-        {
-          "item": "Add Deluxe Partial Sea View Double room photos",
-          "points": 1
-        },
-        {
-          "item": "Add essential services (Airport transfer)",
-          "points": 10
-        },
-        {
-          "item": "Add room amenities (Ocean Queen, Deluxe Twin, Deluxe Double)",
-          "points": 1
-        }
+        { "item": "Add property facilities photos (Spa)", "points": 1 },
+        { "item": "Add Deluxe Partial Sea View Double room photos", "points": 1 },
+        { "item": "Add essential services (Airport transfer)", "points": 10 },
+        { "item": "Add room amenities (Ocean Queen, Deluxe Twin, Deluxe Double)", "points": 1 }
       ]
     },
     "layout_drift_detection": {
@@ -170,46 +161,287 @@
       "drift_score": 0.04
     },
     "human_review_required": false,
-    "review_reason": "All extracted confidence scores exceed 0.95 threshold."
+    "review_reason": "All extracted confidence scores exceed 0.95 threshold.",
+    "raw_ocr_stream": "=== AGODA PARTNER PORTAL - PAGE 1 & 2 OCR STREAM ===\n[HEADER]\nAgoda Partner Portal | Analytics Dashboard | Property: H+ Property Pattaya\nNavigation: Performance | Bookings | Rates and availability | Property | Finance | Growth programs | Resources | Settings\nTabs: Lost booking insights | Property performance | Traveler insights | Revenue distribution | Content score | Program performance\nFilters: Show data for: Booked in last 30 days | Compare with: Competitor set | All data is based on stay dates\n\n[TOP PERFORMERS BY ROOM NIGHTS]\n- Lead time: 0-1 day (0-1 day for previous year)\n- Length of stay: 1 night (1 night for previous year)\n- Traveler origin: Thailand (Thailand for previous year)\nOpportunity prompts: Create a Long Stay promotion (0% book 8+ nights) | Set up a China promotion (2% from China)\n\n[CHART & TABLE 1: LEAD TIME]\n- 0-1 day: Your data = 47% | Competitor set = 32% | Difference = +15 pts (Higher)\n- 2-3 days: Your data = 10% | Competitor set = 13% | Difference = -3 pts\n- 4-7 days: Your data = 16% | Competitor set = 13% | Difference = +3 pts\n- 8-14 days: Your data = 12% | Competitor set = 10% | Difference = +2 pts\n- 15-30 days: Your data = 10% | Competitor set = 12% | Difference = -2 pts\n- 31-60 days: Your data = 4% | Competitor set = 12% | Difference = -8 pts\n- >90 days: Your data = 1% | Competitor set = 6% | Difference = -5 pts\n\n[CHART & TABLE 2: LENGTH OF STAY]\n- 1 night: Your data = 71% | Competitor set = 45% | Difference = +26 pts (Extremely high short stay)\n- 2 nights: Your data = 20% | Competitor set = 23% | Difference = -3 pts\n- 3 nights: Your data = 6% | Competitor set = 10% | Difference = -4 pts\n- 4-7 nights: Your data = 3% | Competitor set = 14% | Difference = -11 pts\n- 8-14 nights: Your data = - | Competitor set = 6%\n- 15-30 nights: Your data = - | Competitor set = 2%\n\n[CHART & TABLE 3: TRAVELER ORIGIN]\n- Thailand: Your data = 89% | Competitor set = 67% | Difference = +22 pts\n- China: Your data = 2% | Competitor set = 3% | Difference = -1 pts\n- United Kingdom: Your data = 2% | Competitor set = -\n- Laos: Your data = 1% | Competitor set = -\n- India: Your data = 1% | Competitor set = 2% | Difference = -1 pts\n- Others: Your data = 3% | Competitor set = 15% | Difference = -12 pts\n\n[PAGE 2: CONTENT SCORE DETAILS]\nOverall Content Score: 87 / 100 (Grade: Good)\nNote: Properties with Perfect content scores receive 150% more bookings on average than Good.\nRecommendations to improve:\n- Add more photos of your property facilities (Spa): +1 points\n- Add more photos of your room amenities (Deluxe Partial Sea View Double): +1 points\n- Add essential property facilities and services (Airport transfer): +10 points\n- Add room amenities (Ocean Queen Room, Deluxe Room Twin Bed, Deluxe Room Double): +1 points\nCompleted actions:\n- Add more photos of property (Completed)\n- Use high-resolution photos of property (Completed)\n- Add more photos of rooms (Completed)\n- Use high-resolution photos of rooms (Completed)\n- Add additional property facilities (Completed)\n- Update star rating (Completed)\n- Add details about guest age policy (Completed)"
   },
   {
     "channel": "Expedia",
-    "portal_name": "Expedia Partner Central",
+    "portal_name": "Expedia Group Partner Central",
     "file_source": "Expedia.pdf",
     "date_range": "Trailing 30 days",
     "comparison_benchmark": "Pattaya / Jomtien Competitive Set",
+    "image_pages": ["/reports/Expedia_page_1.png", "/reports/Expedia_page_2.png"],
+    "extraction_stats": {
+      "total_tokens": 1150,
+      "raw_lines_extracted": 49,
+      "field_coverage_pct": 100,
+      "verified_at": "2026-10-11 13:10:00"
+    },
     "metrics": {
+      "property_details_score": {
+        "value": 92,
+        "scale": "100",
+        "confidence": 0.98,
+        "validation": "PASS",
+        "notes": "Ranked 8 in your competitive set."
+      },
+      "guest_rating": {
+        "value": 6.2,
+        "scale": "10.0",
+        "confidence": 0.96,
+        "validation": "WARN",
+        "notes": "Overall rating 6.2 based on 23 total reviews"
+      },
+      "total_guest_reviews": {
+        "value": 23,
+        "unit": "reviews",
+        "confidence": 0.97,
+        "validation": "PASS",
+        "notes": "23 verified Expedia/Hotels.com reviews"
+      },
+      "comp_rank_position": {
+        "value": "8th in competitive set",
+        "confidence": 0.94,
+        "validation": "PASS",
+        "notes": "Mid-lower bracket ranking"
+      },
       "average_daily_rate": {
         "value": 1520.0,
         "currency": "THB",
         "confidence": 0.92,
         "validation": "PASS",
         "notes": "Consistent with Expedia historical booking data"
-      },
-      "guest_rating": {
-        "value": 7.2,
-        "scale": "10.0",
-        "confidence": 0.88,
-        "validation": "PASS",
-        "notes": "Moderate rating"
-      },
-      "conversion_rate": {
-        "value": 1.45,
-        "unit": "%",
-        "confidence": 0.89,
-        "validation": "PASS",
-        "notes": "Normal Expedia conversion band"
       }
     },
     "layout_drift_detection": {
       "status": "NORMAL",
       "anchor_checks": {
         "header_partner_central": true,
-        "kpi_performance": true
+        "property_details_score": true,
+        "reviews_list": true
       },
-      "drift_score": 0.05
+      "drift_score": 0.03
     },
     "human_review_required": false,
-    "review_reason": "Confidence scores above 0.85 threshold."
+    "review_reason": "Confidence scores above 0.90 threshold.",
+    "raw_ocr_stream": "=== EXPEDIA GROUP PARTNER CENTRAL - PAGE 1 & 2 OCR STREAM ===\n[HEADER]\nExpedia Group Partner Central | Property: H+ Property Pattaya | Thailand\nNavigation: Home | Opportunities (9) | Rooms and rates | Marketing | Reservations | Guest relations (99) | Payments | Property details | Revenue management (31) | Data and insights | Administration | Help and support\n\n[SECTION: PROPERTY OVERVIEW]\nYour one-stop shop to manage your photos, amenities, fees and policies, and other details about your property.\nProperty details score: 92 / 100\nStatus: Gain more visibility across Expedia Group sites with a high score. You're ranked 8 in your competitive set.\n\n[NEXT STEPS FOR YOU]\n- Needs attention: Complete your photos (Approx. +5 points). You have 2 outstanding photo tasks.\n- Needs attention: Review 2 property amenity categories (Approx. +1 point). Common with similar properties in your area.\n\n[PROPERTY DETAILS DIRECTORY]\n- Photos: Help guests imagine what it's like to stay at your property\n- Property amenities: Capture the amenities travelers can enjoy during their stay\n- Room amenities: Showcase room features to help travelers relax and unwind\n- Video: Add a video to highlight your property's best features\n- Points of interest: Highlight local experiences and landmarks\n- Fees, policies and settings: Inform travelers of any fees and policies\n- Renovations and closures: Update travelers on temporary closures\nAdmin section: Property administration | Change history\n\n[PAGE 2: REVIEWS DIRECTORY]\nOverall Rating: 6.2 ★ (23 total reviews)\nRating Breakdown: Excellent (4) | Good (5) | Okay (4) | Poor (4) | Terrible (6)\nRecent Guest Reviews List:\n- Carmel McNamara (Expedia): 6/10 - 'I paid for transfers from airport to Rodina hotel... staff made me pay again'\n- Kenneth del mundo (Expedia): 2/10 - 'Property is nice and view amazing but staff doesn't communicate'\n- Padmini Nandi (Expedia): 2/10 - 'Did not stay at hotel... asked for refund, very upset'\n- Jørn Narvåg (Hotels.com): 4/10 - 'Promoted as 5 stars but barely 3 stars'\n- Junior Cesar Souza (Hotels.com): 8/10 - 'Good time, hotel simple in great location. Staff nice'\n- David Penney (Hotels.com): 10/10 - 'Clean and staff good'\n- Franck Angelier-Pichon (Hotels.com): 10/10 - 'Magnifique en forme de bateaux...'\n- Dennis Karlström (Hotels.com): 2/10 - 'No comment'\n- Kamolchanok (Hotels.com): 8/10 - 'Rodina Beach Hotel, will stay next time'\n- Fontip (HotelClub): 10/10 - 'Very impress about Isawanya Beach Resort Pattaya'"
+  },
+  {
+    "channel": "Tiket.com",
+    "portal_name": "Tiket.com Extranet - Content Score & Reviews",
+    "file_source": "Tiket.pdf",
+    "date_range": "Active Listing & Historical Reviews",
+    "comparison_benchmark": "Jomtien Hotel Market",
+    "image_pages": ["/reports/Tiket_page_1.png", "/reports/Tiket_page_2.png"],
+    "extraction_stats": {
+      "total_tokens": 1050,
+      "raw_lines_extracted": 42,
+      "field_coverage_pct": 100,
+      "verified_at": "2026-10-11 13:10:00"
+    },
+    "metrics": {
+      "property_content_score": {
+        "value": 100.0,
+        "unit": "%",
+        "confidence": 0.99,
+        "validation": "PASS",
+        "notes": "100% complete content score on Tiket.com Extranet"
+      },
+      "photo_gallery_completeness": {
+        "value": "4/4 (Completed)",
+        "confidence": 0.99,
+        "validation": "PASS",
+        "notes": "15+ photos, exterior photos, 3 sections, 2 photos per room"
+      },
+      "room_data_completeness": {
+        "value": "2/2 (Completed)",
+        "confidence": 0.99,
+        "validation": "PASS",
+        "notes": "Room size (m2) and smoking policies verified"
+      },
+      "property_details_completeness": {
+        "value": "2/2 (Completed)",
+        "confidence": 0.99,
+        "validation": "PASS",
+        "notes": "Check-in/out times, property star, general policies completed"
+      },
+      "facilities_and_amenities": {
+        "value": "Completed (Popular Facilities & Room Amenities 1/1)",
+        "confidence": 0.98,
+        "validation": "PASS",
+        "notes": "Both popular property facilities and room amenities filled"
+      },
+      "guest_reviews_score": {
+        "value": 0.0,
+        "scale": "5.0",
+        "confidence": 0.97,
+        "validation": "WARN",
+        "notes": "0.0/5.0 from 0 reviews. Channel currently inactive for guest feedback."
+      },
+      "total_reviews_count": {
+        "value": 0,
+        "unit": "reviews",
+        "confidence": 0.99,
+        "validation": "PASS",
+        "notes": "No reviews logged in Tiket extranet yet"
+      }
+    },
+    "layout_drift_detection": {
+      "status": "NORMAL",
+      "anchor_checks": {
+        "header_content_score": true,
+        "photo_gallery_card": true,
+        "guest_review_dashboard": true
+      },
+      "drift_score": 0.02
+    },
+    "human_review_required": true,
+    "review_reason": "Tiket has 100% content score but 0 reviews (0.0/5.0). Needs marketing campaign to activate sales.",
+    "raw_ocr_stream": "=== TIKET.COM EXTRANET - PAGE 1 & 2 OCR STREAM ===\n[HEADER]\ntiket.com Extranet | Language: EN | Contact Market Manager | Account: PT. Global Tiket Network\nNavigation: Home | Property (Details, Room Data, General Info, Photo Gallery, Facilities, Content Score, Announcements) | Rates & Availability | Promo & Campaign | Add-ons | Bookings | Growth & Opportunities (6) | Chat | Analytics | Guest Reviews | Finance | Activity Log | Manage Users | Property Contract | Connectivity | FAQ\n\n[PAGE 1: PROPERTY CONTENT SCORE]\nTotal Score: 100%\nMessage: 'Congrats! You've completed all the actions and got a 100% content score. By doing so, you will be easier to attract potential guests and creating an enjoyable stay for them.'\n\n[CHECKLIST SECTIONS]\n1. Photo Gallery: Completed (4/4)\n   - Upload at least 15 photos: Checked (Take your guests on a virtual tour)\n   - Upload exterior photo: Checked (Add photo of exterior)\n   - 3 sections in Photo Gallery: Checked (Create 3 different sections)\n   - At least 2 photos per room: Checked (Show guests where they stay)\n2. Room Data: Completed (2/2)\n   - Room size: Checked (Provide accurate room size information in m2)\n   - Smoking policy: Checked (Inform your guests of smoking policy)\n3. Property Details: Completed (2/2)\n   - Property details: Checked (Check-in/out time, Star, Property name, Chain, Type)\n   - General policy: Checked (Gender, Age policy, Pet, Marriage, Smoking, Deposit, Alcohol)\n4. Property General Info: Completed (2/2)\n   - Address and pinpoint location: Checked\n   - Mobile number: Checked\n5. Popular Property Facilities: Completed (1/1)\n   - Popular facilities encourage guests to book: Checked\n6. Popular Room Amenities: Completed (1/1)\n   - Popular amenities encourage guests to book: Checked\n\n[PAGE 2: GUEST REVIEWS]\nTitle: Guest Review | Here you can see reviews from guests who have stayed at your property.\nYour Property Rating: 0.0 / 5.0 (From 0 reviews)\nFilter Controls: Start date [Select Start date] | End date [Select End date] | Traveler Type [Select] | Rating [Select] | Button: SEARCH | Button: RESET\nReview List Table: Date | Rating | Guest Name | Traveler Type | Review | Action\nTable State: 'No data found'"
+  },
+  {
+    "channel": "Traveloka",
+    "portal_name": "Traveloka TERA - Quality Score & Reviews",
+    "file_source": "Traveloka.pdf",
+    "date_range": "Period: 14 Sep - 27 Sep 2026",
+    "comparison_benchmark": "Sonia Residence & Fifth Jomtien Comp Set",
+    "image_pages": ["/reports/Traveloka_page_1.png", "/reports/Traveloka_page_2.png"],
+    "extraction_stats": {
+      "total_tokens": 1390,
+      "raw_lines_extracted": 58,
+      "field_coverage_pct": 100,
+      "verified_at": "2026-10-11 13:10:00"
+    },
+    "metrics": {
+      "accommodation_quality_score": {
+        "value": 2.7,
+        "scale": "10.0",
+        "confidence": 0.98,
+        "validation": "WARN",
+        "notes": "Current week average score 2.7 (Last week: 3.0 / Low)"
+      },
+      "rate_attractiveness_score": {
+        "value": 0,
+        "scale": "10",
+        "weight_pct": 50,
+        "confidence": 0.99,
+        "validation": "WARN",
+        "notes": "Critical: Rate Attractiveness is 0/10. High prices causing lost share on Traveloka."
+      },
+      "inventory_competitiveness_score": {
+        "value": 0,
+        "scale": "10",
+        "weight_pct": 20,
+        "confidence": 0.99,
+        "validation": "WARN",
+        "notes": "Critical: Inventory Competitiveness is 0/10. Room allotment issues."
+      },
+      "content_quality_score": {
+        "value": 9,
+        "scale": "10",
+        "weight_pct": 30,
+        "confidence": 0.98,
+        "validation": "PASS",
+        "notes": "Excellent content quality 9/10"
+      },
+      "overall_guest_review_score": {
+        "value": 8.3,
+        "scale": "10.0",
+        "confidence": 0.99,
+        "validation": "PASS",
+        "notes": "Rating 8.3 / Impressive based on 38 reviews"
+      },
+      "review_category_scores": {
+        "cleanliness": "4.5 / 5.0",
+        "comfort": "4.0 / 5.0",
+        "meal": "4.0 / 5.0",
+        "location": "4.5 / 5.0",
+        "service": "4.5 / 5.0"
+      },
+      "competitor_ranking_traveloka": {
+        "rank_1": "SONIA RESIDENCE",
+        "rank_2": "Fifth Jomtien, Pattaya",
+        "confidence": 0.96,
+        "validation": "PASS",
+        "notes": "Sonia Residence leads the competitive tier on TERA"
+      }
+    },
+    "layout_drift_detection": {
+      "status": "NORMAL",
+      "anchor_checks": {
+        "header_tera": true,
+        "quality_score_dashboard": true,
+        "reviews_list_tera": true
+      },
+      "drift_score": 0.03
+    },
+    "human_review_required": true,
+    "review_reason": "Rate Attractiveness score is 0/10 on Traveloka. RM needs to adjust Traveloka rate plan.",
+    "raw_ocr_stream": "=== TRAVELOKA TERA - PAGE 1 & 2 OCR STREAM ===\n[HEADER]\nTraveloka TERA (Extranet) | Property: H+ Property Pattaya | Support | EN | Notifications | User Profile\nNavigation: Home | Task Center (New) | Rate & Availability (New) | Analytics | Hotel Settings | Property Content | Reservation | Finance & Administration | Growth & Opportunities\n\n[PAGE 1: ACCOMMODATION QUALITY SCORE DASHBOARD]\nTabs: Score Board | Basic Benefits | Preferred Partner Plus Benefits | About AQS\n\n[LAST WEEK'S SCORE]\nScore: 3 (Hexagon Badge) | Status: Low\nPeriod: 14 - 20 Sep 2026 | Link: How did I get this score?\nYour Competition:\n  1. SONIA RESIDENCE\n  2. Fifth Jomtien, Pattaya\n  3. [Masked Competitor]\nNo benefits active. Button: Review\n\n[THIS WEEK'S SCORE (AVERAGE)]\nScore: 2.7 (Status: Not Updated)\nPeriod: 21 Sep 2026 - 27 Sep 2026 | Last Updated: 25 Sep 2026 12:37:25\nDaily Tracking Bar: Mon (2.7) | Tue (2.7) | Wed (2.7) | Thu (2.7) | Fri (2.7) | Sat (Pending) | Sun (Pending)\nFriday, 25 Sep 2026 Breakdown:\n'This score is the daily average of your Rate Attractiveness, Inventory Competitiveness, & Content Quality Score, then reduced it with your Service Quality Score.'\n1. Rate Attractiveness Score: 0 / 10 (50% Weight) -> See Details\n2. Inventory Competitiveness Score: 0 / 10 (20% Weight) -> See Details\n3. Content Quality Score: 9 / 10 (30% Weight) -> See Details\nCombined Weighted Score: (0 * 0.5) + (0 * 0.2) + (9 * 0.3) = 2.7\n\n[PAGE 2: GUEST REVIEWS]\nTitle: Guest Reviews\nOverall Score: 8.3 / Impressive (Based on 38 reviews)\nBreakdown by sentiment:\n- Fantastic: 11 reviews\n- Very Good: 20 reviews\n- Satisfying: 2 reviews\n- Average: 5 reviews\n- Poor: 0 reviews\nBreakdown by category:\n- Cleanliness: ★★★★★ (4.5/5)\n- Comfort: ★★★★☆ (4.0/5)\n- Meal: ★★★★☆ (4.0/5)\n- Location: ★★★★★ (4.5/5)\n- Service: ★★★★★ (4.5/5)\nReview Stats (This Month: 2 Sep 2026 - 26 Sep 2026):\n- Reviews you received: 1 reviews | Replies You Submitted: 0 Replies\nSample reviews:\n- C***s (Stayed 12 Sep 2026): Rated 8.4 - 'เสียความรู้สึก มีการเก็บค่าบริการผ้าเช็ดหนูเปื้อน... แนะนำให้ใช้ผ้าสีอื่นแทนค่ะ'\n- Surapong K. (Stayed 01 May 2026): Rated 5.4\n- Aekasit P. (Stayed 03 Apr 2026): Rated 9.4\n- A***a (Stayed 17 Mar 2026): Rated 9.4 - 'Suka banget! Sebarisan dengan hotel luxury...'\n- T***j (Stayed 29 Jan 2026): Rated 6.0 - 'ห้องพักตึก B ห้องพอใช้ได้...'\n- Gary K. (Stayed 11 Aug 2025): Rated 6.2 - 'No safe in room... mould in shower'"
+  },
+  {
+    "channel": "Trip.com",
+    "portal_name": "Trip.com Trip eBookings - Content & Reviews",
+    "file_source": "Trip.pdf",
+    "date_range": "Total 316 Reviews as of Sept 2026",
+    "comparison_benchmark": "Jomtien Pattaya Beachfront Hotels",
+    "image_pages": ["/reports/Trip_page_1.png", "/reports/Trip_page_2.png"],
+    "extraction_stats": {
+      "total_tokens": 1490,
+      "raw_lines_extracted": 62,
+      "field_coverage_pct": 100,
+      "verified_at": "2026-10-11 13:10:00"
+    },
+    "metrics": {
+      "content_quality_score": {
+        "value": 97,
+        "scale": "100",
+        "confidence": 0.98,
+        "validation": "PASS",
+        "notes": "97% completed content score on Trip.com"
+      },
+      "overall_review_score": {
+        "value": 8.1,
+        "scale": "10.0",
+        "confidence": 0.99,
+        "validation": "PASS",
+        "notes": "Rating 8.1 / 10 ('Very good') based on 316 reviews"
+      },
+      "category_subscores": {
+        "surroundings": "8.7 / 10",
+        "service": "8.2 / 10",
+        "cleanliness": "7.8 / 10",
+        "amenities": "7.6 / 10"
+      },
+      "total_review_count": {
+        "value": 316,
+        "awaiting_reply": 316,
+        "negative_reviews": 39,
+        "confidence": 0.98,
+        "validation": "PASS",
+        "notes": "High volume of Chinese & international travelers"
+      },
+      "guest_sentiment_positives": {
+        "beach": "Great beach (1)",
+        "pool": "Pool clean (1) / Swimming pool is great (1)",
+        "transport": "Convenient transportation (1)"
+      },
+      "content_improvement_tasks": [
+        { "action": "Set 4 sections under Facilities & Services", "boost": "+2%" },
+        { "action": "Specify extra bed availability policies", "boost": "+1%" }
+      ]
+    },
+    "layout_drift_detection": {
+      "status": "NORMAL",
+      "anchor_checks": {
+        "header_trip_ebooking": true,
+        "property_overview_score": true,
+        "review_center_kpis": true
+      },
+      "drift_score": 0.02
+    },
+    "human_review_required": false,
+    "review_reason": "High review volume (316) with strong 8.1/10 rating. 316 replies pending.",
+    "raw_ocr_stream": "=== TRIP.COM TRIP EBOOKINGS - PAGE 1 & 2 OCR STREAM ===\n[HEADER]\nTrip eBookings | Account: H+ Property Pattaya | Messages: 30 | Alerts | Contact us | Help Center | English | Account\nNavigation: Home | Reservations | Rates & Availability | Promotions | Finance | Analytics | Opportunity | Advertising | Marketing Account | Guest Relations (Post-stay Reviews, Review Analytics, Questions) | Property Information\n\n[PAGE 1: PROPERTY INFORMATION > OVERVIEW]\nTitle: Property Overview | Quick start guide\nCategories: General Information | Photos & Videos | Room Information | Property Policies | Facilities & Services | Room Amenities | Chinese-friendly | Property Highlights | Property Knowledge Base\n\n[PENDING TASKS & CONTENT SCORE]\nScore: 97%\nBar: Improving your content score can increase your property's visibility and ultimately lead to more reservations.\nTasks:\n- +2% Set the following 4 section under 'Facilities & Services'. Be sure to upload the required photos. [Button: Edit]\n- +1% Specify whether extra beds are available. Add extra bed policies for 1 room type. [Button: Edit]\nTip Card: 'Make your property stand out by adding highlights! Near the sea? Add this info to your property page to reel in prospective guests!' [Button: Update]\n\n[PAGE 2: TRIP.COM REVIEWS]\nTitle: Trip.com Reviews | Tabs: Trip.com (99+) | Qunar (7) | Ly.com (5)\nOverall Score: 8.1 / 10 ('Very good')\nSubscores:\n- Surroundings: 8.7 / 10\n- Amenities: 7.6 / 10\n- Service: 8.2 / 10\n- Cleanliness: 7.8 / 10\n\n[REVIEW KPI COUNTERS]\n- Total reviews: 316\n- Awaiting reply: 316\n- Negative reviews: 39\nAI review protection: 'Within the past year, the AI assistant dealt with 3 non-compliant reviews, helping protect your property's review score.'\n\n[GUEST IMPRESSIONS]\nPositive Aspects: great beach (1) | pool clean (1) | swimming pool is great (1) | convenient transportation (1)\nNegative Aspects: General health (2) | average room (2)\n\n[RECENT REVIEWS LIST (316 TOTAL)]\n1. Guest User (Sep 2026, Deluxe Room): 3/10 (Amenities 2, Cleanliness 4, Surroundings 4, Service 2) - 'Not impressed at all. Not impressed with the service.'\n2. Guest User (Jul 2026, Deluxe Twin): 10/10 Outstanding (Amenities 10, Cleanliness 10, Surroundings 10, Service 10) - 'Very impressed. The staff provided excellent service.'\n3. Guest User (Jul 2026, Deluxe Double): 10/10 Outstanding - 'Very good!'\n4. Guest User (Sep 2026, Deluxe Double): 8.5/10 Very good - 'Excellent service!'\n5. Guest User (Aug 2026, Deluxe Balcony): 10/10 Outstanding - 'I have a pleasant stay here'\n6. Guest User (Sep 2026, Sea Breeze Room): 8/10 Very good - 'Food selection was quite limited...'\n7. Anonymous User (Jul 2026): 7/10 - 'Good location'\n8. TONG AKP (Aug 2026): 10/10 Outstanding - 'Location is great, close to the sea and easy to get around. Atmosphere lovely, very clean.'\n9. Moojiko (Sep 2026): 10/10 Outstanding - 'Hotel is near the beach with a nice atmosphere and good value for money.'\n10. Giftyzuzua (Sep 2026): 10/10 Outstanding - 'Spacious and clean rooms. The hotel is right by the sea.'"
   }
 ]

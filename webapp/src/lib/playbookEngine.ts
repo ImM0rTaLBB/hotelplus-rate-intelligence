@@ -294,16 +294,19 @@ export function calculateRatesForDate(dateStr: string): RateCalculationResult {
   let highDemandSurge = false;
   let fewerThan3Warn = false;
 
-  if (availComps.length < 3 && totalComps > 0) {
+  if (availComps.length < 3) {
     fewerThan3Warn = true;
-    warnings.push(`วันที่ ${dateStr} มีข้อมูลคู่แข่งที่เปิดขายน้อยกว่า 3 แห่ง (พบ ${availComps.length} แห่ง): งดปรับตามดัชนีคู่แข่งตามกฎ P5`);
+    const warningMsg = totalComps === 0
+      ? `วันที่ ${dateStr} ไม่มีข้อมูลคู่แข่งในระบบ: งดปรับตามดัชนีคู่แข่งตามกฎ P5 (คงราคาเดิม ${rateAfterP5} THB)`
+      : `วันที่ ${dateStr} มีข้อมูลคู่แข่งที่เปิดขายน้อยกว่า 3 แห่ง (พบ ${availComps.length}/${totalComps} แห่ง): งดปรับตามดัชนีคู่แข่งตามกฎ P5 (คงราคาเดิม ${rateAfterP5} THB)`;
+    warnings.push(warningMsg);
     trace.push({
       ruleCode: "P5",
       ruleName: "เทียบกับคู่แข่ง (ข้อมูลไม่พอ)",
       clause: "P5.3",
-      description: "ข้อมูลคู่แข่งที่เปิดขายน้อยกว่า 3 แห่ง ระบบคงราคาเดิมและส่งแจ้งเตือน",
-      inputData: `เปิดขาย ${availComps.length}/5 แห่ง`,
-      arithmetic: "งดปรับตามดัชนี",
+      description: "ข้อมูลคู่แข่งที่เปิดขายน้อยกว่า 3 แห่ง หรือไม่มีข้อมูล ระบบคงราคาเดิมและส่งแจ้งเตือน",
+      inputData: totalComps === 0 ? "ไม่มีข้อมูลคู่แข่งในระบบ" : `เปิดขาย ${availComps.length}/${totalComps} แห่ง`,
+      arithmetic: "งดปรับตามดัชนีคู่แข่ง (คงราคาเดิม)",
       outputValue: `${rateAfterP5} THB`,
       status: "WARNED"
     });

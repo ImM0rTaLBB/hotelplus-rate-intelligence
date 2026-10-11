@@ -1,0 +1,190 @@
+[
+  {
+    "id": "hplus",
+    "hotel_name": "H+ Property Pattaya (Our Hotel)",
+    "is_our_property": true,
+    "star_rating": 3.5,
+    "total_rooms": 144,
+    "cheapest_room_type": "Deluxe Room Twin Bed",
+    "room_size_sqm": 32,
+    "has_swimming_pool": true,
+    "pool_details": "สระว่ายน้ำกลางแจ้ง 1 สระ (Outdoor pool) + สระเด็ก",
+    "beach_distance_meters": 80,
+    "beach_distance_desc": "80 เมตร (เดินข้ามถนนและซอยสั้นถึงชายหาดจอมเทียน)",
+    "review_score": 7.4,
+    "review_scale": "10.0",
+    "total_reviews_count": 890,
+    "primary_source_ota": "Booking.com & Agoda Blended",
+    "scraped_at": "2026-10-06 09:30:00",
+    "facilities": [
+      "สระว่ายน้ำกลางแจ้ง",
+      "แผนกต้อนรับ 24 ชม.",
+      "ห้องอาหาร & บาร์",
+      "ฟรี Wi-Fi ทุกห้อง",
+      "ที่จอดรถฟรี",
+      "บริการซักรีด",
+      "ลิฟต์โดยสาร"
+    ],
+    "scraper_metadata": {
+      "http_status": 200,
+      "method": "Internal PMS / Direct Extraction",
+      "confidence": 1.0
+    }
+  },
+  {
+    "id": "comp_1",
+    "hotel_name": "Inn Residence Serviced Suites Pattaya",
+    "is_our_property": false,
+    "star_rating": 3.0,
+    "total_rooms": 78,
+    "cheapest_room_type": "Deluxe Studio",
+    "room_size_sqm": 30,
+    "has_swimming_pool": true,
+    "pool_details": "มีสระว่ายน้ำ (Rooftop plunge pool บนชั้นดาดฟ้า)",
+    "beach_distance_meters": 150,
+    "beach_distance_desc": "150 เมตร (อยู่ในซอยจอมเทียน เดินประมาณ 2-3 นาที)",
+    "review_score": 7.8,
+    "review_scale": "10.0",
+    "total_reviews_count": 1240,
+    "primary_source_ota": "Agoda",
+    "scraped_at": "2026-10-06 09:30:00",
+    "facilities": [
+      "สระว่ายน้ำบนดาดฟ้า",
+      "ห้องครัวขนาดเล็กในห้อง",
+      "ฟรี Wi-Fi ความเร็วสูง",
+      "ที่จอดรถในร่ม",
+      "ระบบคีย์การ์ดรักษาความปลอดภัย"
+    ],
+    "scraper_metadata": {
+      "http_status": 200,
+      "method": "Playwright Headless / Agoda DOM Parser",
+      "selector": ".property-facilities-box, .ReviewScore__Value",
+      "confidence": 0.98
+    }
+  },
+  {
+    "id": "comp_2",
+    "hotel_name": "Bay Beach Resort Jomtien",
+    "is_our_property": false,
+    "star_rating": 4.5,
+    "total_rooms": 230,
+    "cheapest_room_type": "Superior Mountain View",
+    "room_size_sqm": 38,
+    "has_swimming_pool": true,
+    "pool_details": "มีสระว่ายน้ำ (สระกลางแจ้งขนาดใหญ่สไตล์ลากูน + สระเด็กพร้อมสไลเดอร์)",
+    "beach_distance_meters": 30,
+    "beach_distance_desc": "30 เมตร (ติดถนนเลียบหาดจอมเทียน ข้ามถนนถึงทะเลทันที)",
+    "review_score": 8.2,
+    "review_scale": "10.0",
+    "total_reviews_count": 3150,
+    "primary_source_ota": "Booking.com",
+    "scraped_at": "2026-10-06 09:30:00",
+    "facilities": [
+      "สระว่ายน้ำกลางแจ้งขนาดใหญ่",
+      "ฟิตเนสเซ็นเตอร์",
+      "ห้องอาหารริมหาด",
+      "คิดส์คลับ",
+      "พูลบาร์",
+      "ห้องประชุมสัมมนา"
+    ],
+    "scraper_metadata": {
+      "http_status": 200,
+      "method": "Playwright Headless / Booking HTML Parser",
+      "selector": "[data-testid='property-section--facilities'], .d14d2114f2",
+      "confidence": 0.99
+    }
+  },
+  {
+    "id": "comp_3",
+    "hotel_name": "Dragon Beach Resort",
+    "is_our_property": false,
+    "star_rating": 3.5,
+    "total_rooms": 112,
+    "cheapest_room_type": "Standard Room",
+    "room_size_sqm": 28,
+    "has_swimming_pool": true,
+    "pool_details": "มีสระว่ายน้ำ (สระว่ายน้ำกลางแจ้ง 2 โซนริมสวน)",
+    "beach_distance_meters": 20,
+    "beach_distance_desc": "20 เมตร (ทำเลหน้าหาด ข้ามถนนเลียบชายหาดจอมเทียน)",
+    "review_score": 7.7,
+    "review_scale": "10.0",
+    "total_reviews_count": 960,
+    "primary_source_ota": "Trip.com",
+    "scraped_at": "2026-10-06 09:30:00",
+    "facilities": [
+      "สระว่ายน้ำกลางแจ้ง 2 สระ",
+      "สวนหย่อมและพื้นที่พักผ่อน",
+      "ห้องอาหารไทยและยุโรป",
+      "บริการรูมเซอร์วิส",
+      "ที่จอดรถ"
+    ],
+    "scraper_metadata": {
+      "http_status": 200,
+      "method": "Playwright Headless / Trip.com API Ingestion",
+      "selector": ".detail-facility-item, .score-info",
+      "confidence": 0.97
+    }
+  },
+  {
+    "id": "comp_4",
+    "hotel_name": "Sonia Residence",
+    "is_our_property": false,
+    "star_rating": 4.0,
+    "total_rooms": 165,
+    "cheapest_room_type": "Deluxe Studio",
+    "room_size_sqm": 34,
+    "has_swimming_pool": true,
+    "pool_details": "มีสระว่ายน้ำ (สระว่ายน้ำรูปแบบธีมรีสอร์ต 7 โซนขนาดใหญ่ พร้อมโซนเด็ก)",
+    "beach_distance_meters": 500,
+    "beach_distance_desc": "500 เมตร (เดินเข้าซอยจอมเทียน หรือใช้บริการรถรับส่งกอล์ฟของโรงแรม)",
+    "review_score": 8.1,
+    "review_scale": "10.0",
+    "total_reviews_count": 1820,
+    "primary_source_ota": "Agoda",
+    "scraped_at": "2026-10-06 09:30:00",
+    "facilities": [
+      "สระว่ายน้ำธีมพาร์ค 7 โซน",
+      "ศูนย์ออกกำลังกายฟิตเนส",
+      "รถกอล์ฟรับส่งหน้าหาด",
+      "ร้านกาแฟ & เบเกอรี่",
+      "สวนน้ำเด็กขนาดย่อม"
+    ],
+    "scraper_metadata": {
+      "http_status": 200,
+      "method": "Playwright Headless / Agoda GraphQL API",
+      "selector": ".amenities-item, [data-selenium='reviews-score']",
+      "confidence": 0.98
+    }
+  },
+  {
+    "id": "comp_5",
+    "hotel_name": "Zand Morada Pattaya",
+    "is_our_property": false,
+    "star_rating": 4.0,
+    "total_rooms": 195,
+    "cheapest_room_type": "Deluxe Room",
+    "room_size_sqm": 32,
+    "has_swimming_pool": true,
+    "pool_details": "มีสระว่ายน้ำ (สระน้ำเกลือระบบธรรมชาติกลางแจ้ง + พูลบาร์ริมสระ)",
+    "beach_distance_meters": 20,
+    "beach_distance_desc": "20 เมตร (ติดชายหาดจอมเทียน มองเห็นวิวทะเลแบบ Panorama)",
+    "review_score": 8.7,
+    "review_scale": "10.0",
+    "total_reviews_count": 2490,
+    "primary_source_ota": "Expedia",
+    "scraped_at": "2026-10-06 09:30:00",
+    "facilities": [
+      "สระว่ายน้ำระบบเกลือกลางแจ้ง",
+      "พูลบาร์ริมสระว่ายน้ำ",
+      "ห้องอาหารสไตล์โมเดิร์น",
+      "ห้องออกกำลังกายวิวทะเล",
+      "รูฟท็อปเลานจ์"
+    ],
+    "scraper_metadata": {
+      "http_status": 200,
+      "method": "Playwright Headless / Expedia JSON-LD Scraper",
+      "selector": ".uitk-amenity-list, .uitk-rating-score",
+      "confidence": 0.99
+    }
+  }
+]

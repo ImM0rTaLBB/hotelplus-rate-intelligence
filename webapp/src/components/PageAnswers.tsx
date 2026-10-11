@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { 
-  Terminal, Binary, AlertTriangle, CheckCircle2, Zap
+  Terminal, Binary, AlertTriangle, CheckCircle2, Zap, Info
 } from "lucide-react";
 import { formatPrice } from "@/lib/formatters";
 import { useTheme } from "@/context/ThemeContext";
@@ -262,6 +262,19 @@ export const PageAnswers: React.FC = () => {
                 </div>
               </div>
 
+            </div>
+
+            {/* Explainer Callout: Why 15 September? */}
+            <div className={`p-4 rounded-xl border text-xs sm:text-sm font-sans flex items-start space-x-3 ${
+              isLight ? "bg-amber-50/70 border-amber-300 text-amber-950" : "bg-amber-950/30 border-amber-700/60 text-amber-200"
+            }`}>
+              <Info className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <div className="font-bold text-sm">💡 คำชี้แจง: วันที่ตรวจสอบ ทำไมระบบจึงเริ่มต้นที่ 15 กันยายน 2027?</div>
+                <p className="leading-relaxed">
+                  วันที่ <strong>15 กันยายน 2027 (ตรงกับวันพุธ)</strong> ถูกกำหนดเป็น <strong>&ldquo;ตัวแทนวันธรรมดากลางเดือน (Mid-Month Weekday Baseline)&rdquo;</strong> สำหรับวัดราคาฐาน Low Season ตามโจทย์ เพื่อให้ได้ค่าตัวเลขที่ไม่ถูกรบกวนจากความผันผวนช่วงต้น/ปลายเดือน (Payday effect) หรือวันหยุดยาว อย่างไรก็ดี บนหน้า [2] ตั๋วคำนวณราคา ผู้ใช้สามารถคลิกดูทั้ง <strong>1 ก.ย. (ต้นเดือน)</strong>, <strong>15 ก.ย. (วันธรรมดากลางเดือน)</strong>, <strong>18 ก.ย. (วันเสาร์-สุดสัปดาห์)</strong> หรือเลือกวันใดก็ได้ 1–30 กันยายน จากปฏิทินได้อย่างอิสระ 100%
+                </p>
+              </div>
             </div>
           </div>
 

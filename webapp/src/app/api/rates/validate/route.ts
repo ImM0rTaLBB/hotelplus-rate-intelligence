@@ -38,10 +38,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate currentTierRates
-    if (!Array.isArray(currentTierRates) || currentTierRates.length !== 8) {
+    // Validate currentTierRates (must be array of 8 positive finite numbers)
+    if (
+      !Array.isArray(currentTierRates) ||
+      currentTierRates.length !== 8 ||
+      !currentTierRates.every((rate: unknown) => typeof rate === "number" && Number.isFinite(rate) && rate > 0)
+    ) {
       return NextResponse.json(
-        { error: "Invalid currentTierRates. Expected an array of 8 tier rates." },
+        { error: "Invalid currentTierRates. Expected an array of 8 positive finite numeric tier rates." },
         { status: 400 }
       );
     }

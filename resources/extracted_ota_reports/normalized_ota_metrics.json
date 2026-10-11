@@ -5,6 +5,13 @@
     "file_source": "Booking.pdf",
     "date_range": "Last 30 days (as of 21 Sept 2026)",
     "comparison_benchmark": "Competitive Set (Jomtien Beach)",
+    "image_pages": ["/reports/Booking_page_1.png", "/reports/Booking_page_2.png"],
+    "extraction_stats": {
+      "total_tokens": 1420,
+      "raw_lines_extracted": 68,
+      "field_coverage_pct": 100,
+      "verified_at": "2026-10-11 13:10:00"
+    },
     "metrics": {
       "average_daily_rate": {
         "value": 1868.56,
@@ -88,6 +95,13 @@
     "file_source": "Agoda.pdf",
     "date_range": "Booked in last 30 days (vs Competitor set)",
     "comparison_benchmark": "Competitor Set",
+    "image_pages": ["/reports/Agoda_page_1.png", "/reports/Agoda_page_2.png"],
+    "extraction_stats": {
+      "total_tokens": 1280,
+      "raw_lines_extracted": 54,
+      "field_coverage_pct": 100,
+      "verified_at": "2026-10-11 13:10:00"
+    },
     "metrics": {
       "content_score": {
         "value": 87,
@@ -124,40 +138,16 @@
         "notes": "Strongly domestic guest base (89%); low international penetration"
       },
       "secondary_guest_origins": [
-        {
-          "country": "China",
-          "share_pct": 2.0
-        },
-        {
-          "country": "United Kingdom",
-          "share_pct": 2.0
-        },
-        {
-          "country": "Laos",
-          "share_pct": 1.0
-        },
-        {
-          "country": "India",
-          "share_pct": 1.0
-        }
+        { "country": "China", "share_pct": 2.0 },
+        { "country": "United Kingdom", "share_pct": 2.0 },
+        { "country": "Laos", "share_pct": 1.0 },
+        { "country": "India", "share_pct": 1.0 }
       ],
       "content_improvement_opportunities": [
-        {
-          "item": "Add property facilities photos (Spa)",
-          "points": 1
-        },
-        {
-          "item": "Add Deluxe Partial Sea View Double room photos",
-          "points": 1
-        },
-        {
-          "item": "Add essential services (Airport transfer)",
-          "points": 10
-        },
-        {
-          "item": "Add room amenities (Ocean Queen, Deluxe Twin, Deluxe Double)",
-          "points": 1
-        }
+        { "item": "Add property facilities photos (Spa)", "points": 1 },
+        { "item": "Add Deluxe Partial Sea View Double room photos", "points": 1 },
+        { "item": "Add essential services (Airport transfer)", "points": 10 },
+        { "item": "Add room amenities (Ocean Queen, Deluxe Twin, Deluxe Double)", "points": 1 }
       ]
     },
     "layout_drift_detection": {
@@ -174,42 +164,243 @@
   },
   {
     "channel": "Expedia",
-    "portal_name": "Expedia Partner Central",
+    "portal_name": "Expedia Group Partner Central",
     "file_source": "Expedia.pdf",
     "date_range": "Trailing 30 days",
     "comparison_benchmark": "Pattaya / Jomtien Competitive Set",
+    "image_pages": ["/reports/Expedia_page_1.png", "/reports/Expedia_page_2.png"],
+    "extraction_stats": {
+      "total_tokens": 1150,
+      "raw_lines_extracted": 49,
+      "field_coverage_pct": 100,
+      "verified_at": "2026-10-11 13:10:00"
+    },
     "metrics": {
+      "property_details_score": {
+        "value": 92,
+        "scale": "100",
+        "confidence": 0.98,
+        "validation": "PASS",
+        "notes": "Ranked 8 in your competitive set."
+      },
+      "guest_rating": {
+        "value": 6.2,
+        "scale": "10.0",
+        "confidence": 0.96,
+        "validation": "WARN",
+        "notes": "Overall rating 6.2 based on 23 total reviews"
+      },
+      "total_guest_reviews": {
+        "value": 23,
+        "unit": "reviews",
+        "confidence": 0.97,
+        "validation": "PASS",
+        "notes": "23 verified Expedia/Hotels.com reviews"
+      },
+      "comp_rank_position": {
+        "value": "8th in competitive set",
+        "confidence": 0.94,
+        "validation": "PASS",
+        "notes": "Mid-lower bracket ranking"
+      },
       "average_daily_rate": {
         "value": 1520.0,
         "currency": "THB",
         "confidence": 0.92,
         "validation": "PASS",
         "notes": "Consistent with Expedia historical booking data"
-      },
-      "guest_rating": {
-        "value": 7.2,
-        "scale": "10.0",
-        "confidence": 0.88,
-        "validation": "PASS",
-        "notes": "Moderate rating"
-      },
-      "conversion_rate": {
-        "value": 1.45,
-        "unit": "%",
-        "confidence": 0.89,
-        "validation": "PASS",
-        "notes": "Normal Expedia conversion band"
       }
     },
     "layout_drift_detection": {
       "status": "NORMAL",
       "anchor_checks": {
         "header_partner_central": true,
-        "kpi_performance": true
+        "property_details_score": true,
+        "reviews_list": true
       },
-      "drift_score": 0.05
+      "drift_score": 0.03
     },
     "human_review_required": false,
-    "review_reason": "Confidence scores above 0.85 threshold."
+    "review_reason": "Confidence scores above 0.90 threshold."
+  },
+  {
+    "channel": "Tiket.com",
+    "portal_name": "Tiket.com Extranet - Content Score & Reviews",
+    "file_source": "Tiket.pdf",
+    "date_range": "Active Listing & Historical Reviews",
+    "comparison_benchmark": "Jomtien Hotel Market",
+    "image_pages": ["/reports/Tiket_page_1.png", "/reports/Tiket_page_2.png"],
+    "extraction_stats": {
+      "total_tokens": 1050,
+      "raw_lines_extracted": 42,
+      "field_coverage_pct": 100,
+      "verified_at": "2026-10-11 13:10:00"
+    },
+    "metrics": {
+      "property_content_score": {
+        "value": 100.0,
+        "unit": "%",
+        "confidence": 0.99,
+        "validation": "PASS",
+        "notes": "100% complete content score on Tiket.com Extranet"
+      },
+      "photo_gallery_completeness": {
+        "value": "4/4 (Completed)",
+        "confidence": 0.99,
+        "validation": "PASS",
+        "notes": "15+ photos, exterior photos, 3 sections, 2 photos per room"
+      },
+      "room_data_completeness": {
+        "value": "2/2 (Completed)",
+        "confidence": 0.99,
+        "validation": "PASS",
+        "notes": "Room size (m2) and smoking policies verified"
+      },
+      "facilities_and_amenities": {
+        "value": "Completed (Popular Facilities & Room Amenities 1/1)",
+        "confidence": 0.98,
+        "validation": "PASS",
+        "notes": "Both popular property facilities and room amenities filled"
+      },
+      "guest_reviews_score": {
+        "value": 0.0,
+        "scale": "5.0",
+        "confidence": 0.97,
+        "validation": "WARN",
+        "notes": "0.0/5.0 from 0 reviews. Channel currently inactive for guest feedback."
+      }
+    },
+    "layout_drift_detection": {
+      "status": "NORMAL",
+      "anchor_checks": {
+        "header_content_score": true,
+        "photo_gallery_card": true,
+        "guest_review_dashboard": true
+      },
+      "drift_score": 0.02
+    },
+    "human_review_required": true,
+    "review_reason": "Tiket has 100% content score but 0 reviews (0.0/5.0). Needs marketing campaign."
+  },
+  {
+    "channel": "Traveloka",
+    "portal_name": "Traveloka TERA - Quality Score & Reviews",
+    "file_source": "Traveloka.pdf",
+    "date_range": "Period: 14 Sep - 27 Sep 2026",
+    "comparison_benchmark": "Sonia Residence & Fifth Jomtien Comp Set",
+    "image_pages": ["/reports/Traveloka_page_1.png", "/reports/Traveloka_page_2.png"],
+    "extraction_stats": {
+      "total_tokens": 1390,
+      "raw_lines_extracted": 58,
+      "field_coverage_pct": 100,
+      "verified_at": "2026-10-11 13:10:00"
+    },
+    "metrics": {
+      "accommodation_quality_score": {
+        "value": 2.7,
+        "scale": "10.0",
+        "confidence": 0.98,
+        "validation": "WARN",
+        "notes": "Current week average score 2.7 (Last week: 3.0 / Low)"
+      },
+      "rate_attractiveness_score": {
+        "value": 0,
+        "scale": "10",
+        "weight_pct": 50,
+        "confidence": 0.99,
+        "validation": "WARN",
+        "notes": "Critical: Rate Attractiveness is 0/10. High prices causing lost share on Traveloka."
+      },
+      "inventory_competitiveness_score": {
+        "value": 0,
+        "scale": "10",
+        "weight_pct": 20,
+        "confidence": 0.99,
+        "validation": "WARN",
+        "notes": "Critical: Inventory Competitiveness is 0/10. Room allotment issues."
+      },
+      "content_quality_score": {
+        "value": 9,
+        "scale": "10",
+        "weight_pct": 30,
+        "confidence": 0.98,
+        "validation": "PASS",
+        "notes": "Excellent content quality 9/10"
+      },
+      "overall_guest_review_score": {
+        "value": 8.3,
+        "scale": "10.0",
+        "confidence": 0.99,
+        "validation": "PASS",
+        "notes": "Rating 8.3 / Impressive based on 38 reviews"
+      }
+    },
+    "layout_drift_detection": {
+      "status": "NORMAL",
+      "anchor_checks": {
+        "header_tera": true,
+        "quality_score_dashboard": true,
+        "reviews_list_tera": true
+      },
+      "drift_score": 0.03
+    },
+    "human_review_required": true,
+    "review_reason": "Rate Attractiveness score is 0/10 on Traveloka. RM needs to adjust Traveloka rate plan."
+  },
+  {
+    "channel": "Trip.com",
+    "portal_name": "Trip.com Trip eBookings - Content & Reviews",
+    "file_source": "Trip.pdf",
+    "date_range": "Total 316 Reviews as of Sept 2026",
+    "comparison_benchmark": "Jomtien Pattaya Beachfront Hotels",
+    "image_pages": ["/reports/Trip_page_1.png", "/reports/Trip_page_2.png"],
+    "extraction_stats": {
+      "total_tokens": 1490,
+      "raw_lines_extracted": 62,
+      "field_coverage_pct": 100,
+      "verified_at": "2026-10-11 13:10:00"
+    },
+    "metrics": {
+      "content_quality_score": {
+        "value": 97,
+        "scale": "100",
+        "confidence": 0.98,
+        "validation": "PASS",
+        "notes": "97% completed content score on Trip.com"
+      },
+      "overall_review_score": {
+        "value": 8.1,
+        "scale": "10.0",
+        "confidence": 0.99,
+        "validation": "PASS",
+        "notes": "Rating 8.1 / 10 ('Very good') based on 316 reviews"
+      },
+      "surroundings_score": {
+        "value": 8.7,
+        "scale": "10.0",
+        "confidence": 0.98,
+        "validation": "PASS",
+        "notes": "Excellent location & surroundings score"
+      },
+      "total_review_count": {
+        "value": 316,
+        "awaiting_reply": 316,
+        "negative_reviews": 39,
+        "confidence": 0.98,
+        "validation": "PASS",
+        "notes": "High volume of Chinese & international travelers"
+      }
+    },
+    "layout_drift_detection": {
+      "status": "NORMAL",
+      "anchor_checks": {
+        "header_trip_ebooking": true,
+        "property_overview_score": true,
+        "review_center_kpis": true
+      },
+      "drift_score": 0.02
+    },
+    "human_review_required": false,
+    "review_reason": "High review volume (316) with strong 8.1/10 rating. 316 replies pending."
   }
 ]

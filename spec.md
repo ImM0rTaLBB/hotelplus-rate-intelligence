@@ -75,7 +75,29 @@ interface CompetitorDailyRate {
 }
 ```
 
-### 2.3 Rate Calculation Result (`RateCalculationResult`)
+### 2.3 Competitor Facilities & Amenities Record (`CompetitorAmenitiesRecord`)
+ใช้เก็บข้อมูลสิ่งอำนวยความสะดวกของคู่แข่งทั้ง 5 แห่ง (A4):
+```typescript
+interface CompetitorAmenitiesRecord {
+  id: string;
+  hotel_name: string;
+  star_rating: number;
+  total_rooms: number;
+  cheapest_room_type: string;
+  room_size_sqm: number;
+  has_swimming_pool: boolean;
+  pool_details: string;       // เช่น Rooftop plunge pool, Outdoor pool with bar
+  beach_distance_meters: number; // เช่น 20m, 30m, 150m, 500m
+  beach_distance_desc: string;
+  review_score: number;       // เต็ม 10.0
+  total_reviews_count: number;
+  primary_source_ota: string; // Agoda | Booking.com | Trip.com | Expedia
+  scraped_at: string;
+  facilities: string[];
+}
+```
+
+### 2.4 Rate Calculation Result (`RateCalculationResult`)
 ผลลัพธ์การคำนวณราคาที่ส่งต่อไปยังหน้าบ้าน:
 ```typescript
 interface RateCalculationResult {
@@ -229,6 +251,11 @@ interface RateCalculationResult {
 - เลือกใช้โมเดล **Lightweight Multimodal Model (Gemini 1.5 Flash)** ต้นทุนภาพละ ~\$0.00015
 - **ค่าใช้จ่าย AI รวมทั้งระบบ: ไม่เกิน 0.30 – 1.50 USD ต่อเดือน (ประมาณ 10–55 บาท/เดือน)** ถือว่าต่ำมากและรองรับการขยายตัวได้มหาศาล
 
+### 5.5 การสกัดข้อมูลสมบูรณ์ 100% (100% Raw OCR Text Stream across 6 OTAs)
+- ระบบรองรับภาพหน้าจอรายงาน OTA ครบทั้ง 6 ช่องทาง: **Booking.com, Agoda, Expedia, Tiket.com, Traveloka, และ Trip.com**
+- ทุกไฟล์ที่นำเข้าจะถูกจัดเก็บทั้งในรูปแบบ **Structured KPI Data** (สำหรับส่งเข้าสู่ Pricing Engine) และ **100% Raw OCR Text Stream** (จัดเก็บข้อความดิบทุกประโยคและตารางที่สกัดได้แบบ Verbatim)
+- ผู้ตรวจและ RM สามารถสลับไปดูแท็บ *"สตรีมข้อความดิบ 100%"* เพื่อตรวจสอบความครบถ้วนของข้อมูลก่อนนำไปคำนวณราคา
+
 ---
 
 ## 6. คำตอบโจทย์ข้อ 5: ราคาเสนอขายสำหรับ H+ Property
@@ -249,7 +276,24 @@ interface RateCalculationResult {
    - $P3_{Base} = (936 \times 0.6) + (1,031 \times 0.4) = 974$ บาท
    - เพื่อให้ดัชนีราคาเราอยู่ในเป้า Low (90–95) เทียบกับ Median คู่แข่ง (~920 บาท) ราคาถูกปรับลดลง -15% (เพดานลดสูงสุดของ P5) เหลือ **828 บาท** (วันธรรมดา) และ **869 บาท** (วันหยุด)
 
+### 6.3 คำชี้แจง: วันที่ตรวจสอบ ทำไมจึงเลือกวันที่ 15 กันยายน 2027?
+- **เหตุผลการเลือก:** วันที่ 15 กันยายน 2027 (ตรงกับวันพุธ) ถูกเลือกเป็น **"ตัวแทนวันธรรมดากลางเดือน (Mid-Month Weekday Baseline)"** เพื่อวัดราคาฐาน Low Season ตามโจทย์ โดยเป็นจุดกึ่งกลางเดือนที่ไม่มีความผันผวนจากเงินเดือนออก (Payday effect) หรือวันหยุดยาว
+- **ความยืดหยุ่นในระบบ:** ระบบมิได้จำกัดอยู่แค่วันที่ 15 แต่มีปุ่มลัดเลือก **1 ก.ย.**, **15 ก.ย.**, **18 ก.ย. (วันเสาร์)** และ Date Picker ให้ RM เลือกดูราคาของวันใดก็ได้ 1–30 กันยายน อย่างอิสระ
+
 ---
+
+## 7. สถาปัตยกรรม UI: การแยกมุมมองโหมดผู้ใช้ทั่วไป vs Admin Console
+
+เพื่อแก้ปัญหาความสับสนและความซับซ้อนทางคณิตศาสตร์ ระบบได้แบ่งหน้าจอ [2] ตั๋วคำนวณราคาออกเป็น 2 มุมมอง (Dual Perspectives):
+1. **โหมดผู้ใช้ทั่วไป / ผู้บริหาร (Standard RM Commercial View - Default):**
+   - ออกแบบด้วยสุนทรียภาพที่เรียบง่าย สบายตา ไม่แสดงสมการคณิตศาสตร์หรือโค้ดที่รบกวนสายตา
+   - นำเสนอในรูปของการ์ดสรุปราคา, สถานะฤดูกาล, การเปรียบเทียบกับคู่แข่ง, และราคาขั้นต่ำที่ปลอดภัย
+   - สรุปเหตุผลในรูปแบบภาษาไทยที่เข้าใจง่าย (Commercial Price Rationale) เช่น *"ราคาฐาน 963 บาท + ส่วนเพิ่มวันหยุด +15% = 1,107 บาท"*
+2. **โหมดผู้ดูแลระบบและตรวจสอบสูตร (Admin Console & Engine Auditor):**
+   - แยกพื้นที่สำหรับการตรวจสอบเชิงลึก (Deep Technical Audit) สำหรับ Tech Lead และผู้ตรวจ
+   - แสดง P0–P8 Rule Execution Trace ครบทุกสมการ, ตัวแปรนำเข้า, และการพิสูจน์ผลลัพธ์
+   - แผงจำลองการตั้งค่า Engine Parameters (Weight 60/40, Weekend Cap, Comp Target Bands, Floor % Multiplier)
+   - ตารางบันทึกประวัติการปรับราคา (Audit Trail Table - P8 Compliance)
 
 ## 7. ข้อเลือกทำเพิ่มข้อ 6: จุดที่กฎใน Playbook ไม่สอดคล้องกับข้อมูลจริง
 
